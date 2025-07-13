@@ -1,0 +1,85 @@
+{% load static %}
+<nav class="bg-white border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+            <!-- Logo ou Nome do Site -->
+            <div class="flex-shrink-0 flex items-center">
+                <a href="{% url 'home' %}" class="text-2xl font-serif text-gray-800 hover:text-gray-600">
+                    R & L
+                </a>
+            </div>
+
+            <!-- Links de Navegação Desktop -->
+            <div class="hidden sm:flex sm:items-center sm:ml-6">
+                <div class="flex space-x-8">
+                    <!-- Páginas Dropdown -->
+                    <div class="relative">
+                        <button id="paginasDropdownButton" data-dropdown-toggle="paginasDropdown"
+                                class="inline-flex items-center text-gray-500 hover:text-gray-700 px-1 pt-1 text-sm font-medium">
+                            PÁGINAS
+                            <svg class="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div id="paginasDropdown"
+                             class="hidden absolute z-10 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                            <div class="py-1" role="menu" aria-orientation="vertical">
+                                <a href="{% url 'home' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Home</a>
+                                <a href="{% url 'mensagens' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Mensagens</a>
+                                <a href="{% url 'cerimonia_espaco' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Cerimonia & Espaço</a>
+                                <a href="{% url 'dicas' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dicas</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Presentes Dropdown -->
+                    <div class="relative">
+                        <button id="presentesDropdownButton" data-dropdown-toggle="presentesDropdown"
+                                class="inline-flex items-center text-gray-500 hover:text-gray-700 px-1 pt-1 text-sm font-medium">
+                            PRESENTES
+                            <svg class="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div id="presentesDropdown"
+                             class="hidden absolute z-10 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                            <div class="py-1" role="menu" aria-orientation="vertical">
+                                <a href="{% url 'lista_presentes' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Lista de Presentes</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Confirmar Presença -->
+                    <a href="{% url 'confirmar_presenca' %}"
+                       class="text-gray-500 hover:text-gray-700 px-1 pt-1 text-sm font-medium">
+                        CONFIRMAR PRESENÇA
+                    </a>
+                </div>
+            </div>
+
+            <!-- Botão Menu Mobile -->
+            <div class="sm:hidden flex items-center">
+                <button type="button" onclick="toggleMobileMenu()"
+                        class="text-gray-500 hover:text-gray-700 focus:outline-none">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menu Mobile -->
+    <div id="mobile-menu" class="hidden sm:hidden">
+        <div class="pt-2 pb-3 space-y-1">
+            <a href="{% url 'home' %}" class="block pl-3 pr-4 py-2 text-base font-medium text-gray-500 hover:text-gray-700 hover:bg-gray-50">Home</a>
+            <a href="{% url 'mensagens' %}" class="block pl-3 pr-4 py-2 text-base font-medium text-gray-500 hover:text-gray-700 hover:bg-gray-50">Mensagens</a>
+            <a href="{% url 'cerimonia_espaco' %}" class="block pl-3 pr-4 py-2 text-base font-medium text-gray-500 hover:text-gray-700 hover:bg-gray-50">Cerimônia e Espaço</a>
+            <a href="{% url 'dicas' %}" class="block pl-3 pr-4 py-2 text-base font-medium text-gray-500 hover:text-gray-700 hover:bg-gray-50">Dicas</a>
+            <a href="{% url 'lista_presentes' %}" class="block pl-3 pr-4 py-2 text-base font-medium text-gray-500 hover:text-gray-700 hover:bg-gray-50">Lista de Presentes</a>
+            <a href="{% url 'confirmar_presenca' %}" class="block pl-3 pr-4 py-2 text-base font-medium text-gray-500 hover:text-gray-700 hover:bg-gray-50">Confirmar Presença</a>
+        </div>
+    </div>
+</nav>
+
+<script src="{% static 'js/navbar.js' %}"></script>
