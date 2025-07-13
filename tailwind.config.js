@@ -5,7 +5,14 @@ module.exports = {
     './app_casamento/templates/**/*.html',
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        serif: ['Cormorant Garamond', 'serif'],
+      },
+      colors: {
+        lavender: '#E6E6FA',
+      },
+    },
   },
   plugins: [],
 }

@@ -2,7 +2,91 @@
 {% load static %}
 
 {% block content %}
-<div class="bg-blue-500 text-white p-4 rounded-lg shadow-md">
-    Teste do Tailwind CSS
-</div>
+    <div class="relative min-h-screen">
+        <!-- Imagem de Fundo com Overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="{% static 'images/IMG_0714.jpg' %}" alt="Reynan e Laiane" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black opacity-30"></div>
+        </div>
+
+        <!-- Container Principal -->
+        <div class="relative z-10 flex flex-col items-center justify-center min-h-screen text-center px-4">
+            <!-- Data do Casamento (Mobile) -->
+            <div class="sm:hidden text-white mb-8 font-light tracking-widest">
+                <div class="text-2xl">13 · 12 · 2025</div>
+            </div>
+
+            <!-- Nome dos Noivos -->
+            <h1 class="text-5xl md:text-7xl font-serif text-white tracking-wider mb-16">
+                Reynan & Laiane
+            </h1>
+
+
+        </div>
+    </div>
+
+    <!-- Contagem Regressiva -->
+    <div class="relative min-h-screen">
+        <div class="w-full max-w-4xl mx-auto">
+            <h2 class="text-2xl text-gray-800 mb-10 tracking-widest font-light text-center">CONTAGEM REGRESSIVA PARA O GRANDE DIA</h2>
+            <div class="flex justify-center gap-6 text-center">
+                <div class="flex flex-col items-center">
+                    <div class="bg-violet-200 rounded-lg p-6 w-28 mb-2">
+                        <div class="text-4xl font-serif text-gray-800" id="dias">152</div>
+                    </div>
+                    <div class="text-sm text-gray-600 tracking-wider">Dias</div>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="bg-violet-200 rounded-lg p-6 w-28 mb-2">
+                        <div class="text-4xl font-serif text-gray-800" id="horas">23</div>
+                    </div>
+                    <div class="text-sm text-gray-600 tracking-wider">Horas</div>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="bg-violet-200 rounded-lg p-6 w-28 mb-2">
+                        <div class="text-4xl font-serif text-gray-800" id="minutos">30</div>
+                    </div>
+                    <div class="text-sm text-gray-600 tracking-wider">Minutos</div>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="bg-violet-200 rounded-lg p-6 w-28 mb-2">
+                        <div class="text-4xl font-serif text-gray-800" id="segundos">52</div>
+                    </div>
+                    <div class="text-sm text-gray-600 tracking-wider">Segundos</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mensagem de Boas-vindas -->
+        <div class="mt-20 max-w-2xl mx-auto text-center">
+            <h2 class="text-4xl font-serif text-gray-800 mb-6">Sejam bem-vindos ao nosso site!</h2>
+            <p class="text-gray-600 text-lg tracking-wide font-light">A MELHOR FORMA DE COMPARTILHAR ESSE MOMENTO COM VOCÊS É UNINDO SONHOS.</p>
+        </div>
+    </div>
+
+    <!-- Versiculo + carrousel -->
+     <div class="max-w-4xl mx-auto px-4 py-16">
+        <!-- Versículo -->
+        <div class="text-center mb-12">
+            <p class="text-gray-700 italic mb-2">"Para que todos vejam, e saibam, e considerem, e juntamente entendam que a mão do SENHOR fez isso."</p>
+            <p class="text-gray-600">Isaías 41:20</p>
+        </div>
+
+        <!-- Texto de Introdução -->
+        <div class="text-gray-700 text-lg leading-relaxed mb-16 text-center max-w-3xl mx-auto">
+            <p>Aqui vamos contar a vocês, queridos amigos e familiares, os momentos mais marcantes da nossa história de amor. A contagem regressiva começa, o frio na barriga e toda a ansiedade do dia mais esperado de nossas vidas nos enche de alegria em tê-los ao nosso lado. Vamos juntos nesse grande sonho, o dia em que uniremos nossas almas e corpos para sempre, o dia do nosso casamento.</p>
+        </div>
+
+        <!-- Carrossel de Fotos -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="aspect-w-4 aspect-h-5 rounded-lg overflow-hidden">
+                <img src="{% static 'images/IMG_0714.jpg' %}" alt="Foto do Casal 1" class="w-full h-full object-cover">
+            </div>
+            <div class="aspect-w-4 aspect-h-5 rounded-lg overflow-hidden">
+                <img src="{% static 'images/IMG_4742.JPG' %}" alt="Foto do Casal 2" class="w-full h-full object-cover">
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'js/home.js' %}"></script>
 {% endblock %}
