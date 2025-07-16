@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import ConvidadosForm, PartidaForm
-from .models import Convidados
+from .forms import ConvidadosForm, PartidaForm, PresensaForm
+from .models import Convidados, Presencas
 
 def home(request):
     return render(request, 'home.html')
@@ -24,7 +24,16 @@ def cerimonia_espaco(request):
     })
 
 def confirmar_presenca(request):
-    return render(request, 'confirmar_presenca.html')
+    if request.method == 'POST':
+        form = PresensaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Sua presença foi confirmada com sucesso! Estamos ansiosos para celebrar com você!')
+            return redirect('confirmar_presenca')
+    else:
+        form = PresensaForm()
+    
+    return render(request, 'confirmar_presenca.html', {'form': form})
 
 def dicas(request):
     return render(request, 'dicas.html')
