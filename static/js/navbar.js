@@ -1,46 +1,51 @@
 // Função para alternar o menu mobile
 function toggleMobileMenu() {
-    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenu = document.getElementById('navbar-sticky');
     mobileMenu.classList.toggle('hidden');
 }
 
-// Função para controlar os dropdowns
-function setupDropdowns() {
-    const dropdownButtons = document.querySelectorAll('[data-dropdown-toggle]');
+// Função para controlar o menu mobile
+function setupMobileMenu() {
+    const toggleButton = document.querySelector('[data-collapse-toggle="navbar-sticky"]');
+    const mobileMenu = document.getElementById('navbar-sticky');
 
-    dropdownButtons.forEach(button => {
-        const dropdownId = button.getAttribute('data-dropdown-toggle');
-        const dropdown = document.getElementById(dropdownId);
-
-        // Adiciona evento de clique no botão
-        button.addEventListener('click', (e) => {
-            e.stopPropagation(); // Evita que o clique se propague
-            dropdown.classList.toggle('hidden');
-
-            // Fecha outros dropdowns abertos
-            dropdownButtons.forEach(otherButton => {
-                const otherId = otherButton.getAttribute('data-dropdown-toggle');
-                if (otherId !== dropdownId) {
-                    const otherDropdown = document.getElementById(otherId);
-                    otherDropdown.classList.add('hidden');
-                }
-            });
+    if (toggleButton && mobileMenu) {
+        toggleButton.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+            
+            // Atualiza o aria-expanded
+            const isExpanded = !mobileMenu.classList.contains('hidden');
+            toggleButton.setAttribute('aria-expanded', isExpanded);
         });
-    });
+    }
+}
 
-    // Fecha os dropdowns quando clicar fora deles
-    document.addEventListener('click', (e) => {
-        const isDropdownButton = e.target.closest('[data-dropdown-toggle]');
-        if (!isDropdownButton) {
-            dropdownButtons.forEach(button => {
-                const dropdownId = button.getAttribute('data-dropdown-toggle');
-                const dropdown = document.getElementById(dropdownId);
-                dropdown.classList.add('hidden');
-            });
+// Função para destacar a página atual
+function highlightCurrentPage() {
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll('#navbar-sticky a');
+    
+    navLinks.forEach(link => {
+        const linkPath = new URL(link.href).pathname;
+        
+        // Remove classes ativas de todos os links
+        link.classList.remove('bg-blue-700', 'text-white', 'md:bg-transparent', 'md:text-blue-700');
+        link.classList.add('text-gray-900', 'hover:bg-gray-100', 'md:hover:bg-transparent', 'md:hover:text-blue-700');
+        
+        // Adiciona classes ativas ao link atual
+        if (linkPath === currentPath) {
+            link.classList.remove('text-gray-900', 'hover:bg-gray-100');
+            link.classList.add('text-white', 'bg-blue-700', 'md:bg-transparent', 'md:text-blue-700');
+            link.setAttribute('aria-current', 'page');
+        } else {
+            link.removeAttribute('aria-current');
         }
     });
 }
 
-// Inicializa os dropdowns quando o documento estiver carregado
-document.addEventListener('DOMContentLoaded', setupDropdowns);
+// Inicializa as funcionalidades quando o documento estiver carregado
+document.addEventListener('DOMContentLoaded', function() {
+    setupMobileMenu();
+    highlightCurrentPage();
+});
 
