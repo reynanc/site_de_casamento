@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.urls import path
 from app_casamento import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -10,4 +12,8 @@ urlpatterns = [
     path('dicas/', views.dicas, name='dicas'),
     path('lista-presentes/', views.lista_presentes, name='lista_presentes'),
     path('mensagens/', views.mensagens, name='mensagens'),
+    path('presentes/comprar/<int:presente_id>/', views.comprar_presente, name='comprar_presente'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

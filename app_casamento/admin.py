@@ -1,5 +1,7 @@
 from django.contrib import admin
 from .models import Convidados, Presencas
+from .models import Visitante
+from .models import Presente, CompraPresente
 
 @admin.register(Convidados)
 class ConvidadosAdmin(admin.ModelAdmin):
@@ -48,3 +50,28 @@ class PresencasAdmin(admin.ModelAdmin):
     
     def get_readonly_fields(self, request, obj=None):
         return self.readonly_fields
+
+
+@admin.register(Visitante)
+class VisitanteAdmin(admin.ModelAdmin):
+    list_display = ['ip_address', 'visitado_em', 'pagina']
+    list_filter = ['visitado_em', 'pagina']
+    readonly_fields = ['ip_address', 'user_agent', 'visitado_em', 'pagina']
+    ordering = ['-visitado_em']
+
+
+@admin.register(Presente)
+class PresenteAdmin(admin.ModelAdmin):
+    list_display = ('nome', 'categoria', 'preco', 'quantidade', 'criado_em')
+    list_filter = ('categoria', 'quantidade', 'criado_em')
+    search_fields = ('nome', 'descricao')
+    list_editable = ('quantidade',)
+    ordering = ('categoria', 'nome')
+
+@admin.register(CompraPresente)
+class CompraPresenteAdmin(admin.ModelAdmin):
+    list_display = ('nome_comprador', 'presente', 'status', 'criado_em')
+    list_filter = ('status', 'criado_em')
+    search_fields = ('nome_comprador', 'email_comprador', 'presente__nome')
+    readonly_fields = ('id', 'payment_id', 'preference_id', 'criado_em', 'atualizado_em')
+    ordering = ('-criado_em',)

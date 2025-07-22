@@ -2,11 +2,76 @@
 {% load static %}
 
 {% block content %}
-
-    <div class="max-w-4xl mx-auto px-4 py-16">
-        <div class="mt-20 max-w-2xl mx-auto text-center">
-            <h2 class="text-4xl font-serif text-gray-800 mb-6">Presentes de Casamento</h2>
-        </div>
+<div class="max-w-6xl mx-auto px-4 py-16">
+    <div class="mt-20 max-w-2xl mx-auto text-center mb-12">
+        <h2 class="text-4xl font-serif text-gray-800 mb-6">Presentes de Casamento</h2>
+        <p class="text-lg text-gray-600">Escolha um presente especial para nos ajudar a começar nossa nova vida juntos!</p>
     </div>
-
+    
+    {% if presentes_por_categoria %}
+        {% for categoria, presentes in presentes_por_categoria.items %}
+        <div class="mb-12">
+            <h3 class="text-2xl font-serif text-gray-800 mb-6 border-b-2 border-purple-200 pb-2">{{ categoria }}</h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {% for presente in presentes %}
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                    {% if presente.imagem %}
+                    <div class="h-64 w-full overflow-hidden">
+                        <img src="{{ presente.imagem.url }}" alt="{{ presente.nome }}" class="w-full h-64 object-contain">
+                    </div>
+                    {% else %}
+                    <div class="w-full h-64 bg-gray-200 flex items-center justify-center">
+                        <span class="text-gray-500">Sem imagem</span>
+                    </div>
+                    {% endif %}
+                    
+                    <div class="p-6">
+                        <h4 class="text-xl font-semibold text-gray-800 mb-2">{{ presente.nome }}</h4>
+                        
+                        {% if presente.descricao %}
+                        <p class="text-gray-600 mb-4 text-sm">{{ presente.descricao|truncatewords:15 }}</p>
+                        {% endif %}
+                        
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-2xl font-bold text-purple-600">R$ {{ presente.preco }}</span>
+                            {% if presente.quantidade > 0 %}
+                                <span class="text-sm text-green-600 font-medium">{{ presente.quantidade }} disponível{{ presente.quantidade|pluralize:",eis" }}</span>
+                            {% else %}
+                                <span class="text-sm text-red-600 font-medium bg-red-100 px-2 py-1 rounded">Esgotado</span>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="flex gap-2">
+                            {% if presente.quantidade > 0 %}
+                                <a href="{% url 'comprar_presente' presente.id %}" 
+                                   class="flex-1 bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors duration-300 text-center">
+                                    Presentear
+                                </a>
+                            {% else %}
+                                <button disabled 
+                                        class="flex-1 bg-gray-400 text-white px-4 py-2 rounded-lg cursor-not-allowed text-center">
+                                    Esgotado
+                                </button>
+                            {% endif %}
+                            
+                            {% if presente.link_produto %}
+                            <a href="{{ presente.link_produto }}" target="_blank" 
+                               class="px-4 py-2 border border-purple-600 text-purple-600 rounded-lg hover:bg-purple-50 transition-colors duration-300">
+                                Ver
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="text-center py-12">
+            <p class="text-xl text-gray-600">Em breve teremos uma lista de presentes disponível!</p>
+        </div>
+    {% endif %}
+</div>
 {% endblock %}

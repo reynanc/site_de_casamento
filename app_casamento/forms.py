@@ -1,5 +1,5 @@
 from django import forms
-from .models import Convidados, Presencas
+from .models import Convidados, Presencas, CompraPresente
 
 
 class ConvidadosForm(forms.ModelForm):
@@ -23,10 +23,16 @@ class ConvidadosForm(forms.ModelForm):
             })
         }
         labels = {
-            'nome': 'Nome',
+            'nome': '*Nome',
             'email': 'E-mail',
-            'mensagem': 'Mensagem'
+            'mensagem': '*Mensagem'
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Required fields
+        self.fields['nome'].required = True
+        self.fields['mensagem'].required = True
 
 
 class PartidaForm(forms.Form):
@@ -58,7 +64,7 @@ class PresensaForm(forms.ModelForm):
             'telefone': forms.TextInput(
                 attrs={
                     'class': 'w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-300 focus:border-transparent transition duration-200',
-                    'placeholder': '(99) 99999-9999'}),
+                    'placeholder': '(81) 99999-9999'}),
             'qtd_adultos': forms.NumberInput(attrs={
                 'class': 'w-20 px-3 py-2 border border-gray-300 rounded-lg text-center',
                 'min': '1',
@@ -123,3 +129,39 @@ class PresensaForm(forms.ModelForm):
                 self.add_error('nomes_criancas', f'Você deve informar {qtd_criancas} nome(s) de criança(s).')
 
         return cleaned_data
+
+
+class CompraForm(forms.ModelForm):
+    class Meta:
+        model = CompraPresente
+        fields = ['nome_comprador', 'email_comprador', 'telefone_comprador', 'mensagem']
+        widgets = {
+            'nome_comprador': forms.TextInput(attrs={
+                'class': 'w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent',
+                'placeholder': 'Seu nome completo'
+            }),
+            'email_comprador': forms.EmailInput(attrs={
+                'class': 'w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent',
+                'placeholder': 'seu@email.com'
+            }),
+            'telefone_comprador': forms.TextInput(attrs={
+                'class': 'w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent',
+                'placeholder': '(81) 99999-9999'
+            }),
+            'mensagem': forms.Textarea(attrs={
+                'class': 'w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent',
+                'placeholder': 'Deixe uma mensagem carinhosa para os noivos...',
+                'rows': 4
+            })
+        }
+        labels = {
+            'nome_comprador': 'Nome Completo',
+            'email_comprador': 'E-mail',
+            'telefone_comprador': 'Telefone (opcional)',
+            'mensagem': 'Mensagem para os Noivos (opcional)'
+        }
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['telefone_comprador'].required = False
+        self.fields['mensagem'].required = False

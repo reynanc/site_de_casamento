@@ -1051,21 +1051,28 @@
         <div class="bg-white rounded-lg shadow-md p-8">
             {% if messages %}
                 {% for message in messages %}
-                    <div id="message-{{ forloop.counter }}" class="mb-6 p-4 rounded-lg relative overflow-hidden {% if message.tags == 'success' %}bg-green-100 border border-green-400 text-green-700{% else %}bg-red-100 border border-red-400 text-red-700{% endif %}">
+                    <div id="message-{{ forloop.counter }}"
+                         class="mb-6 p-4 rounded-lg relative overflow-hidden {% if message.tags == 'success' %}bg-green-100 border border-green-400 text-green-700{% else %}bg-red-100 border border-red-400 text-red-700{% endif %}">
                         {{ message }}
                         <!-- Botão de fechar manual -->
-                        <button onclick="dismissMessage('message-{{ forloop.counter }}')" class="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-xl font-bold">&times;</button>
+                        <button onclick="dismissMessage('message-{{ forloop.counter }}')"
+                                class="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-xl font-bold">
+                            &times;
+                        </button>
                         <!-- Barra de progresso -->
-                        <div id="progress-{{ forloop.counter }}" class="absolute bottom-0 left-0 h-1 bg-opacity-50 {% if message.tags == 'success' %}bg-green-500{% else %}bg-red-500{% endif %} transition-all duration-[10000ms] ease-linear" style="width: 100%;"></div>
+                        <div id="progress-{{ forloop.counter }}"
+                             class="absolute bottom-0 left-0 h-1 bg-opacity-50 {% if message.tags == 'success' %}bg-green-500{% else %}bg-red-500{% endif %} transition-all duration-[10000ms] ease-linear"
+                             style="width: 100%;"></div>
                     </div>
                 {% endfor %}
             {% endif %}
 
             <form method="post" class="space-y-6">
                 {% csrf_token %}
-                
+
                 <div>
-                    <label for="{{ form.nome.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2 font-serif">
+                    <label for="{{ form.nome.id_for_label }}"
+                           class="block text-sm font-medium text-gray-700 mb-2 font-serif">
                         {{ form.nome.label }}
                     </label>
                     {{ form.nome }}
@@ -1077,7 +1084,8 @@
                 </div>
 
                 <div>
-                    <label for="{{ form.email.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2 font-serif">
+                    <label for="{{ form.email.id_for_label }}"
+                           class="block text-sm font-medium text-gray-700 mb-2 font-serif">
                         {{ form.email.label }}
                     </label>
                     {{ form.email }}
@@ -1089,7 +1097,8 @@
                 </div>
 
                 <div>
-                    <label for="{{ form.telefone.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2 font-serif">
+                    <label for="{{ form.telefone.id_for_label }}"
+                           class="block text-sm font-medium text-gray-700 mb-2 font-serif">
                         {{ form.telefone.label }} <span class="text-gray-500">(opcional)</span>
                     </label>
                     {{ form.telefone }}
@@ -1103,7 +1112,7 @@
                 <!-- Seção de Acompanhantes -->
                 <div class="border-t pt-6">
                     <h3 class="text-lg font-medium text-gray-800 mb-4 font-serif">Quantos acompanhantes?</h3>
-                    
+
                     <!-- Adultos -->
                     <div class="mb-4">
                         <div class="flex items-center justify-between mb-3">
@@ -1112,17 +1121,20 @@
                                 <p class="text-xs text-gray-500">Faixa etária: (Acima de 7 anos)</p>
                             </div>
                             <div class="flex items-center space-x-3">
-                                <button type="button" onclick="decrementCounter('id_qtd_adultos', 1)" class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100">
+                                <button type="button" onclick="decrementCounter('id_qtd_adultos', 1)"
+                                        class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100">
                                     <span class="text-lg font-bold">−</span>
                                 </button>
                                 {{ form.qtd_adultos }}
-                                <button type="button" onclick="incrementCounter('id_qtd_adultos')" class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100">
+                                <button type="button" onclick="incrementCounter('id_qtd_adultos')"
+                                        class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100">
                                     <span class="text-lg font-bold">+</span>
                                 </button>
                             </div>
                         </div>
                         <div id="nomes-adultos-container" style="display: none;">
-                            <label for="{{ form.nomes_adultos.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2 font-serif">
+                            <label for="{{ form.nomes_adultos.id_for_label }}"
+                                   class="block text-sm font-medium text-gray-700 mb-2 font-serif">
                                 {{ form.nomes_adultos.label }} *
                             </label>
                             {{ form.nomes_adultos }}
@@ -1142,17 +1154,20 @@
                                 <p class="text-xs text-gray-500">Faixa etária: (Até 6 anos)</p>
                             </div>
                             <div class="flex items-center space-x-3">
-                                <button type="button" onclick="decrementCounter('id_qtd_criancas', 0)" class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100">
+                                <button type="button" onclick="decrementCounter('id_qtd_criancas', 0)"
+                                        class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100">
                                     <span class="text-lg font-bold">−</span>
                                 </button>
                                 {{ form.qtd_criancas }}
-                                <button type="button" onclick="incrementCounter('id_qtd_criancas')" class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100">
+                                <button type="button" onclick="incrementCounter('id_qtd_criancas')"
+                                        class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100">
                                     <span class="text-lg font-bold">+</span>
                                 </button>
                             </div>
                         </div>
                         <div id="nomes-criancas-container" style="display: none;">
-                            <label for="{{ form.nomes_criancas.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2 font-serif">
+                            <label for="{{ form.nomes_criancas.id_for_label }}"
+                                   class="block text-sm font-medium text-gray-700 mb-2 font-serif">
                                 {{ form.nomes_criancas.label }} *
                             </label>
                             {{ form.nomes_criancas }}
@@ -1166,7 +1181,8 @@
                 </div>
 
                 <div class="text-center pt-4">
-                    <button type="submit" class="px-8 py-3 bg-purple-300 hover:bg-purple-400 text-gray-800 rounded-lg transition duration-200 font-medium text-lg">
+                    <button type="submit"
+                            class="px-8 py-3 bg-purple-300 hover:bg-purple-400 text-gray-800 rounded-lg transition duration-200 font-medium text-lg">
                         Confirmar Presença
                     </button>
                 </div>
@@ -1178,11 +1194,21 @@
     <div class="max-w-2xl mx-auto px-4 mb-16">
         <div class="bg-purple-50 rounded-lg p-6 text-center">
             <h3 class="text-xl font-serif text-gray-800 mb-3">Informações Importantes</h3>
+            <p class="text-gray-600 text-sm mb-2">
+                Queridos convidados,
+            </p>
+            <p class="text-gray-600 text-sm mb-2">
+                Para que possamos receber a todos com o carinho e conforto que merecem, pedimos gentilmente que apenas
+                as pessoas que receberam o convite compareçam ao evento.
+            </p>
+            <p class="text-gray-600 text-sm mb-2 font-semibold">
+                Por favor, evitem levar acompanhantes não convidados.
+            </p>
             <p class="text-gray-600 text-sm">
-                Após confirmar sua presença, você receberá mais detalhes sobre o evento por e-mail. 
-                Caso precise fazer alguma alteração, entre em contato conosco.
+                Por gentileza, leve a senha que foi entregue – pois ela será necessária para o acesso à festa.
             </p>
         </div>
     </div>
+
     <script src="{% static 'js/confirmar_presenca.js' %}"></script>
 {% endblock %}
