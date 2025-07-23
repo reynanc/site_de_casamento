@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-    <div class="relative min-h-screen">
+    <div class="relative min-h-screen pt-16">
         <!-- Imagem de Fundo com Overlay -->
         <div class="absolute inset-0 z-0">
             <img src="{% static 'images/IMG_0714.jpg' %}" alt="Reynan e Laiane" class="w-full h-full object-cover">
@@ -25,42 +25,49 @@
         </div>
     </div>
 
-    <!-- Contagem Regressiva -->
+     <!-- Contagem Regressiva -->
      <div class="relative pt-32">
         <div class="w-full max-w-4xl mx-auto">
-            <h2 class="text-2xl text-gray-800 mb-10 tracking-widest font-light text-center">CONTAGEM REGRESSIVA PARA O GRANDE DIA</h2>
+            <h2 class="text-1xl text-gray-800 mb-10 tracking-widest font-light text-center">CONTAGEM REGRESSIVA PARA O GRANDE DIA</h2>
             <div class="flex flex-wrap justify-center gap-6 text-center">
-                <div class="flex flex-col items-center w-28 sm:w-auto">
-                    <div class="bg-violet-200 rounded-lg p-6 w-28 mb-2">
-                        <div class="text-4xl font-serif text-gray-800" id="dias">152</div>
+                <!-- Primeira linha em mobile / Todos em linha no PC -->
+                <div class="flex flex-col items-center w-36 sm:w-auto">
+                    <div class="bg-violet-200 rounded-lg p-6 w-36 mb-2">
+                        <div class="text-2xl font-serif text-gray-800" id="dias">152</div>
                     </div>
-                    <div class="text-sm text-gray-600 tracking-wider">Dias</div>
+                    <div class="text-xs text-gray-600 tracking-wider">Dias</div>
                 </div>
-                <div class="flex flex-col items-center w-28 sm:w-auto">
-                    <div class="bg-violet-200 rounded-lg p-6 w-28 mb-2">
-                        <div class="text-4xl font-serif text-gray-800" id="horas">23</div>
+                <div class="flex flex-col items-center w-36 sm:w-auto">
+                    <div class="bg-violet-200 rounded-lg p-6 w-36 mb-2">
+                        <div class="text-2xl font-serif text-gray-800" id="horas">23</div>
                     </div>
-                    <div class="text-sm text-gray-600 tracking-wider">Horas</div>
+                    <div class="text-xs text-gray-600 tracking-wider">Horas</div>
                 </div>
-                <div class="flex flex-col items-center w-28 sm:w-auto">
-                    <div class="bg-violet-200 rounded-lg p-6 w-28 mb-2">
-                        <div class="text-4xl font-serif text-gray-800" id="minutos">30</div>
+                
+                <!-- Quebra de linha apenas em mobile -->
+                <div class="w-full md:hidden"></div>
+                
+                <!-- Segunda linha em mobile / Continuação da linha no PC -->
+                <div class="flex flex-col items-center w-36 sm:w-auto">
+                    <div class="bg-violet-200 rounded-lg p-6 w-36 mb-2">
+                        <div class="text-2xl font-serif text-gray-800" id="minutos">30</div>
                     </div>
-                    <div class="text-sm text-gray-600 tracking-wider">Minutos</div>
+                    <div class="text-xs text-gray-600 tracking-wider">Minutos</div>
                 </div>
-                <div class="flex flex-col items-center w-28 sm:w-auto">
-                    <div class="bg-violet-200 rounded-lg p-6 w-28 mb-2">
-                        <div class="text-4xl font-serif text-gray-800" id="segundos">52</div>
+                <div class="flex flex-col items-center w-36 sm:w-auto">
+                    <div class="bg-violet-200 rounded-lg p-6 w-36 mb-2">
+                        <div class="text-2xl font-serif text-gray-800" id="segundos">52</div>
                     </div>
-                    <div class="text-sm text-gray-600 tracking-wider">Segundos</div>
+                    <div class="text-xs text-gray-600 tracking-wider">Segundos</div>
                 </div>
             </div>
         </div>
+    </div>
 
         <!-- Mensagem de Boas-vindas -->
         <div class="mt-20 max-w-2xl mx-auto text-center">
-            <h2 class="text-4xl font-serif text-gray-800 mb-6">Sejam bem-vindos ao nosso site!</h2>
-            <p class="text-gray-600 text-lg tracking-wide font-light">A MELHOR FORMA DE COMPARTILHAR ESSE MOMENTO COM VOCÊS É UNINDO SONHOS.</p>
+            <h2 class="text-3xl font-serif text-gray-800 mb-6">Sejam bem-vindos ao nosso site!</h2>
+            <p class="text-gray-600 text-1xl uppercase tracking-wide font-light">A MELHOR FORMA DE COMPARTILHAR ESSE MOMENTO COM VOCÊS É UNINDO SONHOS.</p>
         </div>
     </div>
 
@@ -74,26 +81,50 @@
     <!-- Versiculo + carrousel -->
      <div class="max-w-4xl mx-auto px-4 py-1">
         <!-- Versículo -->
-        <div class="text-center mb-12">
-            <p class="text-gray-700 italic mb-2">"Para que todos vejam, e saibam, e considerem, e juntamente entendam que a mão do SENHOR fez isso."</p>
-            <p class="text-gray-600">Isaías 41:20</p>
+        <div class="text-center  mb-12">
+            <p class="text-gray-700 font-semibold italic mb-2 text-xs">"Para que todos vejam, e saibam, e considerem, e juntamente entendam que a mão do SENHOR fez isso." Isaías 41:20</p>
+
         </div>
 
         <!-- Texto de Introdução -->
-        <div class="text-gray-700 text-lg leading-relaxed mb-16 text-center max-w-3xl mx-auto">
+         <div class="text-gray-700 text-xs leading-relaxed mb-16 text-center max-w-3xl mx-auto">
             <p>Aqui vamos contar a vocês, queridos amigos e familiares, os momentos mais marcantes da nossa história de amor. A contagem regressiva começa, o frio na barriga e toda a ansiedade do dia mais esperado de nossas vidas nos enche de alegria em tê-los ao nosso lado. Vamos juntos nesse grande sonho, o dia em que uniremos nossas almas e corpos para sempre, o dia do nosso casamento.</p>
         </div>
 
         <!-- Carrossel de Fotos -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="aspect-w-4 aspect-h-5 rounded-lg overflow-hidden">
-                <img src="{% static 'images/IMG_0714.jpg' %}" alt="Foto do Casal 1" class="w-full h-full object-cover">
+        <div id="controls-carousel" class="relative w-full max-w-4xl mx-auto mb-16" data-carousel="static" style="z-index: 10;" >
+            <!-- Carousel wrapper -->
+            <div class="relative h-96 overflow-hidden rounded-lg md:h-[500px]">
+                <!-- Item 1 -->
+                <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
+                    <img src="{% static 'images/IMG_0714.jpg' %}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-cover" alt="Foto do Casal 1">
+                </div>
+                <!-- Item 2 -->
+                <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                    <img src="{% static 'images/IMG_4742.JPG' %}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-cover" alt="Foto do Casal 2">
+                </div>
             </div>
-            <div class="aspect-w-4 aspect-h-5 rounded-lg overflow-hidden">
-                <img src="{% static 'images/IMG_4742.JPG' %}" alt="Foto do Casal 2" class="w-full h-full object-cover">
-            </div>
+            <!-- Slider controls -->
+            <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
+                <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white group-focus:outline-none">
+                    <svg class="w-4 h-4 text-violet-900 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+                    </svg>
+                    <span class="sr-only">Anterior</span>
+                </span>
+            </button>
+            <button type="button" class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
+                <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white group-focus:outline-none">
+                    <svg class="w-4 h-4 text-violet-900 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                    </svg>
+                    <span class="sr-only">Próximo</span>
+                </span>
+            </button>
         </div>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
 
     <script src="{% static 'js/home.js' %}"></script>
 {% endblock %}

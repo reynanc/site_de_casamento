@@ -1,14 +1,14 @@
 {% load static %}
-<nav class="bg-white fixed w-full z-20 top-0 start-0 border-b border-gray-200">
+<nav class="bg-white fixed w-full z-50 top-0 start-0 border-b border-gray-200 shadow-sm">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="{% url 'home' %}" class="flex items-center space-x-3 rtl:space-x-reverse">
-            <span class="self-center text-2xl font-serif font-semibold whitespace-nowrap text-violet-900 tracking-wider">L & R</span>
+        <a href="{% url 'home' %}" class="flex items-center space-x-3 rtl:space-x-reverse group">
+            <span class="self-center text-2xl font-serif font-semibold whitespace-nowrap text-violet-900 tracking-wider group-hover:text-violet-700 transition-colors duration-300 border-b-2 border-transparent group-hover:border-violet-300">L & R</span>
         </a>
         <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
             <button data-collapse-toggle="navbar-sticky" type="button"
-                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-lg md:hidden hover:bg-violet-100 focus:outline-none focus:ring-2 focus:ring-violet-500 dark:text-white dark:hover:bg-violet-700 dark:focus:ring-violet-600 bg-violet-600"
+                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-violet-900 rounded-lg md:hidden hover:bg-violet-100 focus:outline-none focus:ring-2 focus:ring-violet-500 bg-violet-50 transition-colors duration-300"
                     aria-controls="navbar-sticky" aria-expanded="false">
-                <span class="sr-only">Open main menu</span>
+                <span class="sr-only">Abrir menu</span>
                 <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                      viewBox="0 0 17 14">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -22,7 +22,7 @@
                 <!-- Página Inicial -->
                 <li>
                     <a href="{% url 'home' %}"
-                       class="block py-2 px-3 text-white rounded-sm hover:bg-violet-100 md:hover:bg-transparent md:text-violet-700 md:hover:text-violet-500 md:p-0 tracking-wide"
+                       class="block py-2 px-3 text-violet-900 rounded-sm hover:bg-violet-100 md:hover:bg-transparent md:text-violet-700 md:hover:text-violet-500 md:p-0 tracking-wide transition-colors duration-300 relative md:after:absolute md:after:bottom-0 md:after:left-0 md:after:h-0.5 md:after:w-0 md:hover:after:w-full md:after:bg-violet-400 md:after:transition-all md:after:duration-300"
                        aria-current="page">
                         Página Inicial
                     </a>
@@ -31,7 +31,7 @@
                 <!-- Mensagens -->
                 <li>
                     <a href="{% url 'mensagens' %}"
-                       class="block py-2 px-3 text-white rounded-sm hover:bg-violet-100 md:hover:bg-transparent md:text-violet-700 md:hover:text-violet-500 md:p-0 tracking-wide">
+                       class="block py-2 px-3 text-violet-900 rounded-sm hover:bg-violet-100 md:hover:bg-transparent md:text-violet-700 md:hover:text-violet-500 md:p-0 tracking-wide transition-colors duration-300 relative md:after:absolute md:after:bottom-0 md:after:left-0 md:after:h-0.5 md:after:w-0 md:hover:after:w-full md:after:bg-violet-400 md:after:transition-all md:after:duration-300">
                         Mensagens
                     </a>
                 </li>
@@ -39,7 +39,7 @@
                 <!-- Cerimônia & Espaço -->
                 <li>
                     <a href="{% url 'cerimonia_espaco' %}"
-                       class="block py-2 px-3 text-white rounded-sm hover:bg-violet-100 md:hover:bg-transparent md:text-violet-700 md:hover:text-violet-500 md:p-0 tracking-wide">
+                       class="block py-2 px-3 text-violet-900 rounded-sm hover:bg-violet-100 md:hover:bg-transparent md:text-violet-700 md:hover:text-violet-500 md:p-0 tracking-wide transition-colors duration-300 relative md:after:absolute md:after:bottom-0 md:after:left-0 md:after:h-0.5 md:after:w-0 md:hover:after:w-full md:after:bg-violet-400 md:after:transition-all md:after:duration-300">
                         Cerimônia & Espaço
                     </a>
                 </li>
@@ -47,7 +47,7 @@
                 <!-- Dicas -->
                 <li>
                     <a href="{% url 'dicas' %}"
-                       class="block py-2 px-3 text-white rounded-sm hover:bg-violet-100 md:hover:bg-transparent md:text-violet-700 md:hover:text-violet-500 md:p-0 tracking-wide">
+                       class="block py-2 px-3 text-violet-900 rounded-sm hover:bg-violet-100 md:hover:bg-transparent md:text-violet-700 md:hover:text-violet-500 md:p-0 tracking-wide transition-colors duration-300 relative md:after:absolute md:after:bottom-0 md:after:left-0 md:after:h-0.5 md:after:w-0 md:hover:after:w-full md:after:bg-violet-400 md:after:transition-all md:after:duration-300">
                         Dicas
                     </a>
                 </li>
@@ -55,7 +55,7 @@
                 <!-- Presentes -->
                 <li>
                     <a href="{% url 'lista_presentes' %}"
-                       class="block py-2 px-3 text-white rounded-sm hover:bg-violet-100 md:hover:bg-transparent md:text-violet-700 md:hover:text-violet-500 md:p-0 tracking-wide">
+                       class="block py-2 px-3 text-violet-900 rounded-sm hover:bg-violet-100 md:hover:bg-transparent md:text-violet-700 md:hover:text-violet-500 md:p-0 tracking-wide transition-colors duration-300 relative md:after:absolute md:after:bottom-0 md:after:left-0 md:after:h-0.5 md:after:w-0 md:hover:after:w-full md:after:bg-violet-400 md:after:transition-all md:after:duration-300">
                         Presentes
                     </a>
                 </li>
@@ -63,7 +63,7 @@
                 <!-- Confirmar Presença -->
                 <li>
                     <a href="{% url 'confirmar_presenca' %}"
-                       class="block py-2 px-3 text-white rounded-sm hover:bg-violet-100 md:hover:bg-transparent md:text-violet-700 md:hover:text-violet-500 md:p-0 tracking-wide">
+                       class="block py-2 px-3 text-violet-900 rounded-sm hover:bg-violet-100 md:hover:bg-transparent md:text-violet-700 md:hover:text-violet-500 md:p-0 tracking-wide transition-colors duration-300 relative md:after:absolute md:after:bottom-0 md:after:left-0 md:after:h-0.5 md:after:w-0 md:hover:after:w-full md:after:bg-violet-400 md:after:transition-all md:after:duration-300">
                         Confirmar Presença
                     </a>
                 </li>
