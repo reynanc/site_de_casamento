@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('tracar-rota').addEventListener('click', function () {
+    // Função para traçar a rota
+    function tracarRota() {
         const origem = document.getElementById('endereco-partida').value;
         if (!origem) {
             alert('Por favor, digite seu endereço de origem.');
@@ -12,6 +13,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Abrir o Google Maps em uma nova aba com a rota
         window.open(`https://www.google.com/maps/dir/${origemEncoded}/${destinoEncoded}`, '_blank');
+        
+        // Limpar o campo de input após traçar a rota
+        document.getElementById('endereco-partida').value = '';
+    }
+
+    // Event listener para o botão
+    document.getElementById('tracar-rota').addEventListener('click', tracarRota);
+
+    // Event listener para a tecla Enter no campo de input
+    document.getElementById('endereco-partida').addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault(); // Previne o comportamento padrão do Enter
+            tracarRota();
+        }
     });
 });
 

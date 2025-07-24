@@ -9,6 +9,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
+
+     <link rel="icon" href="data:image/svg+xml,
+      <svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22>
+        <text y=%22.9em%22 font-size=%2290%22>💜</text>
+      </svg>">
+    
 </head>
 <body class="relative min-h-screen">
     {% include 'navbar.html' %}
@@ -16,6 +22,7 @@
         {% block content %}
         {% endblock %}
     </main>
+    {% include 'topo.html' %}
     {% include 'footer.html' %}
     <script src="{% static 'js/base.js' %}"></script>
 </body>

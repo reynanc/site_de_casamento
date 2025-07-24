@@ -9,7 +9,7 @@ class ConvidadosForm(forms.ModelForm):
         widgets = {
             'nome': forms.TextInput(attrs={
                 'class': 'w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-300 focus:border-transparent transition duration-200',
-                'placeholder': 'Nome'
+                'placeholder': 'Nome *'
             }),
             'email': forms.EmailInput(attrs={
                 'class': 'w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-300 focus:border-transparent transition duration-200',
@@ -17,7 +17,7 @@ class ConvidadosForm(forms.ModelForm):
             }),
             'mensagem': forms.Textarea(attrs={
                 'class': 'w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-300 focus:border-transparent transition duration-200 resize-none',
-                'placeholder': 'Mensagem',
+                'placeholder': 'Mensagem *',
                 'rows': 6,
                 'maxlength': 2000
             })
