@@ -1,0 +1,18 @@
+{% load static %}
+<!-- Botão para voltar ao topo -->
+<div class="flex justify-center py-1">
+    <button id="backToTop"
+            class="flex flex-col items-center justify-center text-gray-600 px-6 py-4 transition-all duration-300 group"
+            aria-label="Voltar ao topo">
+
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"
+             class="w-8 h-8 mb-2 transform group-hover:-translate-y-1 transition-transform duration-300">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="m5 15 7-7 7 7"/>
+        </svg>
+
+        <span class="text-xs uppercase font-medium">Voltar ao Topo</span>
+    </button>
+</div>
+
+<script src="{% static 'js/topo.js' %}"></script>
