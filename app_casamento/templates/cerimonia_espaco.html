@@ -4,7 +4,7 @@
 {% block content %}
     <div class="max-w-4xl mx-auto px-4 py-16">
         <div class="mt-20 max-w-2xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl sm:text-3xl font-serif text-gray-800 mb-6">Nosso Grande Momento</h2>
+            <h2 class="text-3xl sm:text-3xl font-serif text-gray-800 mb-6">Nosso grande momento!</h2>
             <p class="text-sm sm:text-base lg:text-lg text-gray-600 uppercase tracking-wide font-light">O grande dia está chegando! Esperamos
                 vocês para testemunhar esse momento único em nossas vidas, onde o amor será celebrado em cada detalhe.
                 Sua presença tornará esse dia ainda mais inesquecível!
@@ -1056,7 +1056,7 @@
             </div>
             <div class="w-full md:w-1/2 text-center md:text-left">
                 <h3 class="text-2xl font-serif text-gray-800 mb-4">Espaço Bouganville</h3>
-                <p class="text-gray-700 mb-4">13 de dezembro de 2025</p>
+                <p class="text-gray-700 mb-4">13 de dezembro de 2025 -  15:30h</p>
                 <p class="text-sm sm:text-base lg:text-md tracking-wide font-light text-gray-600 mb-6 bg-gray-50 rounded-lg underline">Só um lembrete importante: organizem o Uber com antecedência, pois o
                     retorno pode ser um pouco mais complicado no horário da saída.</p>
             </div>
@@ -1065,7 +1065,7 @@
 
     <!-- Mapa do Google (iframe) -->
     <div class="max-w-4xl mx-auto px-4 mb-16">
-        <h3 class="text-2xl font-serif text-gray-800 mb-6 text-center">Como Chegar</h3>
+        <h3 class="text-2xl font-serif text-gray-800 mb-6 text-center">Como chegar</h3>
         <div class="w-full flex justify-center">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.0813246145867!2d-34.88017816878664!3d-7.990538423354424!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7ab17edcfcfccc7%3A0x61ca1ca9cab00f1f!2sEspa%C3%A7o%20Bouganville!5e0!3m2!1spt-BR!2sbr!4v1752637034070!5m2!1spt-BR!2sbr"
                     width="100%" height="450"
@@ -1076,17 +1076,17 @@
 
     <!-- Formulário para Traçar Rota -->
     <div class="max-w-4xl mx-auto px-4 mb-16 bg-gray-50 py-8 rounded-lg shadow-sm">
-        <h3 class="text-2xl font-serif text-gray-800 mb-4 text-center">Traçar Rota</h3>
-        <p class="text-gray-600 text-center mb-6">Digite aqui o endereço de origem para traçar uma rota</p>
+        <h3 class="text-2xl font-serif text-gray-800 mb-4 text-center">Traçar rota</h3>
+        <p class="text-sm sm:text-base lg:text-lg text-gray-600 tracking-wide font-light text-center">Digite aqui o endereço de origem para traçar uma rota:</p>
 
-        <form id="rota-form" class="max-w-md mx-auto">
+        <form id="rota-form" class="max-w-md mx-auto mt-3">
             <div class="mb-4">
                 <input type="text" id="endereco-partida" placeholder="Local de partida"
-                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-300 focus:border-transparent transition duration-200">
+                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-300 focus:border-transparent transition duration-200">
             </div>
             <div class="text-center">
                 <button type="button" id="tracar-rota"
-                        class="px-6 py-3 bg-purple-300 hover:bg-purple-400 text-gray-800 rounded-lg transition duration-200 font-medium">
+                        class="bg-violet-300 hover:bg-violet-400 text-white font-serif font-medium py-3 px-8 rounded-lg transition duration-200 transform hover:scale-105 shadow-md">
                     Traçar rota
                 </button>
             </div>
@@ -1097,7 +1097,7 @@
     <div class="max-w-4xl mx-auto px-4 mb-16">
         <h3 class="text-2xl font-serif text-gray-800 mb-6 text-center">Previsão do tempo</h3>
         <div id="weather-container" class="bg-white rounded-lg shadow-md p-6 max-w-3xl mx-auto">
-            <div id="weather" class="text-gray-700 text-sm mt-2 text-center">
+            <div id="weather" class="text-gray-600 text-sm mt-2 text-center">
                 Carregando previsão do tempo...
             </div>
         </div>
