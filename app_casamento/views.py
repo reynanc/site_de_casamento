@@ -12,7 +12,12 @@ from .api_mercado_pago import criar_pagamento_presente
 
 def get_contador_visitantes():
     """Função para obter o número total de visitantes únicos"""
-    return Visitante.objects.count()
+    # Contar visitantes únicos dos últimos 30 dias para evitar acúmulo excessivo
+    from datetime import timedelta
+    from django.utils import timezone
+    
+    data_limite = timezone.now() - timedelta(days=30)
+    return Visitante.objects.filter(visitado_em__gte=data_limite).count()
 
 def home(request):
     context = {
