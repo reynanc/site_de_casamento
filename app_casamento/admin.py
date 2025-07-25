@@ -1,10 +1,10 @@
 from django.contrib import admin
-from .models import Convidados, Presencas
+from .models import Mensagem, Convidado
 from .models import Visitante
 from .models import Presente, CompraPresente
 
-@admin.register(Convidados)
-class ConvidadosAdmin(admin.ModelAdmin):
+@admin.register(Mensagem)
+class MensagemAdmin(admin.ModelAdmin):
     list_display = ('nome', 'email', 'criado_em')
     list_filter = ('criado_em',)
     search_fields = ('nome', 'email')
@@ -12,7 +12,7 @@ class ConvidadosAdmin(admin.ModelAdmin):
     ordering = ('-criado_em',)
 
     fieldsets = (
-        ('Informações do Convidado', {
+        ('Informações do Mensagem', {
             'fields': ('nome', 'email')
         }),
         ('Mensagem', {
@@ -27,8 +27,8 @@ class ConvidadosAdmin(admin.ModelAdmin):
     def get_readonly_fields(self, request, obj=None):
         return self.readonly_fields
 
-@admin.register(Presencas)
-class PresencasAdmin(admin.ModelAdmin):
+@admin.register(Convidado)
+class ConvidadoAdmin(admin.ModelAdmin):
     list_display = ('nome', 'telefone', 'email', 'qtd_adultos', 'qtd_criancas', 'criado_em')
     list_filter = ('criado_em', 'qtd_adultos', 'qtd_criancas')
     search_fields = ('nome', 'email', 'telefone', 'nomes_adultos', 'nomes_criancas')
@@ -36,7 +36,7 @@ class PresencasAdmin(admin.ModelAdmin):
     ordering = ('-criado_em',)
 
     fieldsets = (
-        ('Informações do Convidado', {
+        ('Informações do Mensagem', {
             'fields': ('nome', 'email', 'telefone')
         }),
         ('Acompanhantes', {
