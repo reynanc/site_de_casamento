@@ -4,16 +4,16 @@
 {% block content %}
 
     <div class="max-w-4xl mx-auto px-4 py-16">
-        <div class="mt-20 max-w-2xl mx-auto text-center">
-            <h2 class="text-4xl font-serif text-gray-800 mb-6">Confirme sua presença</h2>
-            <p class="text-gray-600 text-lg uppercase tracking-wide font-light">O nosso dia especial não seria o mesmo
+        <div class="mt-20 max-w-2xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl sm:text-3xl font-serif text-gray-800 mb-6">Confirme sua presença!</h2>
+            <p class="text-sm sm:text-base lg:text-lg text-gray-600 uppercase tracking-wide font-light">O nosso dia especial não seria o mesmo
                 sem vocês! Confirme sua presença e venha celebrar o amor conosco.
             </p>
         </div>
     </div>
 
     <!-- Ícone de Flor Lavanda -->
-    <div class="flex justify-center py-16">
+    <div class="flex justify-center py-6">
         <div class="text-purple-300">
             <svg width="136" height="36" viewBox="0 0 136 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M71.7502 27.2338C72.5204 27.967 73.4332 28.5337 74.4316 28.8986C74.4807 28.923 74.5352 28.9342 74.5898 28.9311C74.6994 28.9311 74.748 28.789 74.7683 28.6834C74.9712 27.7251 74.4681 26.7668 73.9205 25.9547C72.9234 24.4764 71.7198 23.1486 70.3466 22.0119C70.2227 21.8899 70.0687 21.803 69.9003 21.7601C69.2756 21.6667 69.6407 22.5113 69.7097 22.8118C69.8354 23.3478 69.9733 23.8797 70.1478 24.4036C70.4565 25.4581 71.0049 26.4268 71.7502 27.2338V27.2338Z"
@@ -1047,8 +1047,8 @@
     </div>
 
     <!-- Formulário de Confirmação de Presença -->
-    <div class="max-w-2xl mx-auto px-4 mb-16">
-        <div class="bg-white rounded-lg shadow-md p-8">
+    <div class="max-w-2xl mx-auto mb-16">
+        <div class="bg-gray-50 rounded-lg shadow-sm p-8">
             {% if messages %}
                 {% for message in messages %}
                     <div id="message-{{ forloop.counter }}"
@@ -1071,10 +1071,6 @@
                 {% csrf_token %}
 
                 <div>
-                    <label for="{{ form.nome.id_for_label }}"
-                           class="block text-sm font-medium text-gray-700 mb-2 font-serif">
-                        {{ form.nome.label }}
-                    </label>
                     {{ form.nome }}
                     {% if form.nome.errors %}
                         <div class="mt-1 text-sm text-red-600">
@@ -1084,23 +1080,6 @@
                 </div>
 
                 <div>
-                    <label for="{{ form.email.id_for_label }}"
-                           class="block text-sm font-medium text-gray-700 mb-2 font-serif">
-                        {{ form.email.label }}
-                    </label>
-                    {{ form.email }}
-                    {% if form.email.errors %}
-                        <div class="mt-1 text-sm text-red-600">
-                            {{ form.email.errors.0 }}
-                        </div>
-                    {% endif %}
-                </div>
-
-                <div>
-                    <label for="{{ form.telefone.id_for_label }}"
-                           class="block text-sm font-medium text-gray-700 mb-2 font-serif">
-                        {{ form.telefone.label }} <span class="text-gray-500">(opcional)</span>
-                    </label>
                     {{ form.telefone }}
                     {% if form.telefone.errors %}
                         <div class="mt-1 text-sm text-red-600">
@@ -1118,7 +1097,7 @@
                         <div class="flex items-center justify-between mb-3">
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 font-serif">{{ form.qtd_adultos.label }}</label>
-                                <p class="text-xs text-gray-500">Faixa etária: (Acima de 7 anos)</p>
+                                <p class="text-xs text-gray-500">Conta no buffet: (Acima de 6 anos)</p>
                             </div>
                             <div class="flex items-center space-x-3">
                                 <button type="button" onclick="decrementCounter('id_qtd_adultos', 1)"
@@ -1182,7 +1161,7 @@
 
                 <div class="text-center pt-4">
                     <button type="submit"
-                            class="px-8 py-3 bg-purple-300 hover:bg-purple-400 text-gray-800 rounded-lg transition duration-200 font-medium text-lg">
+                            class="px-8 py-3 bg-violet-300 hover:bg-violet-400 text-white rounded-lg transition duration-200 font-medium text-lg">
                         Confirmar Presença
                     </button>
                 </div>
@@ -1192,7 +1171,7 @@
 
     <!-- Seção adicional com informações -->
     <div class="max-w-2xl mx-auto px-4 mb-16">
-        <div class="bg-purple-50 rounded-lg p-6 text-center">
+        <div class="bg-violet-100 rounded-lg p-6 text-center">
             <h3 class="text-xl font-serif text-gray-800 mb-3">Informações Importantes</h3>
             <p class="text-gray-600 text-sm mb-2">
                 Queridos convidados,

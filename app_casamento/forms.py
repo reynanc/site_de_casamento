@@ -1,10 +1,10 @@
 from django import forms
-from .models import Convidados, Presencas, CompraPresente
+from .models import Mensagem, Convidado, CompraPresente
 
 
-class ConvidadosForm(forms.ModelForm):
+class MensagemForm(forms.ModelForm):
     class Meta:
-        model = Convidados
+        model = Mensagem
         fields = ['nome', 'email', 'mensagem']
         widgets = {
             'nome': forms.TextInput(attrs={
@@ -50,12 +50,12 @@ class PartidaForm(forms.Form):
 
 class PresensaForm(forms.ModelForm):
     class Meta:
-        model = Presencas
+        model = Convidado
         fields = ['nome', 'email', 'telefone', 'qtd_adultos', 'nomes_adultos', 'qtd_criancas', 'nomes_criancas']
         widgets = {
             'nome': forms.TextInput(attrs={
                 'class': 'w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-300 focus:border-transparent transition duration-200',
-                'placeholder': 'Nome'
+                'placeholder': 'Nome *'
             }),
             'email': forms.EmailInput(attrs={
                 'class': 'w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-300 focus:border-transparent transition duration-200',
@@ -64,7 +64,7 @@ class PresensaForm(forms.ModelForm):
             'telefone': forms.TextInput(
                 attrs={
                     'class': 'w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-300 focus:border-transparent transition duration-200',
-                    'placeholder': '(81) 99999-9999'}),
+                    'placeholder': '(81) 98888-8888 (opcional)'}),
             'qtd_adultos': forms.NumberInput(attrs={
                 'class': 'w-20 px-3 py-2 border border-gray-300 rounded-lg text-center',
                 'min': '1',
@@ -137,20 +137,20 @@ class CompraForm(forms.ModelForm):
         fields = ['nome_comprador', 'email_comprador', 'telefone_comprador', 'mensagem']
         widgets = {
             'nome_comprador': forms.TextInput(attrs={
-                'class': 'w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent',
-                'placeholder': 'Seu nome completo'
+                'class': 'w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-300 focus:border-transparent transition duration-200',
+                'placeholder': 'Seu nome completo *'
             }),
             'email_comprador': forms.EmailInput(attrs={
-                'class': 'w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent',
-                'placeholder': 'seu@email.com'
+                'class': 'w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-300 focus:border-transparent transition duration-200',
+                'placeholder': 'seu@email.com *'
             }),
             'telefone_comprador': forms.TextInput(attrs={
-                'class': 'w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent',
-                'placeholder': '(81) 99999-9999'
+                'class': 'w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-300 focus:border-transparent transition duration-200',
+                'placeholder': '(81) 98888-8888 (opcional)'
             }),
             'mensagem': forms.Textarea(attrs={
-                'class': 'w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent',
-                'placeholder': 'Deixe uma mensagem carinhosa para os noivos...',
+                'class': 'w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-300 focus:border-transparent transition duration-200',
+                'placeholder': 'Deixe uma mensagem carinhosa para nós... (opcional)',
                 'rows': 4
             })
         }
