@@ -13,6 +13,7 @@ urlpatterns = [
     path('lista-presentes/', views.lista_presentes, name='lista_presentes'),
     path('mensagens/', views.mensagens, name='mensagens'),
     path('presentes/comprar/<int:presente_id>/', views.comprar_presente, name='comprar_presente'),
+    path('webhook/mercadopago/', views.webhook_mercadopago, name='webhook_mercadopago'),
 ]
 
 if settings.DEBUG:
