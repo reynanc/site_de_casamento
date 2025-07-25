@@ -22,18 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Validação em tempo real do formulário
     const form = document.querySelector('form');
     const nomeInput = document.querySelector('input[name="nome"]');
-    const emailInput = document.querySelector('input[name="email"]');
     const telefoneInput = document.querySelector('input[name="telefone"]');
-    const submitButton = document.querySelector('button[type="submit"]');
-
-    // Função para validar email
-    function isValidEmail(email) {
-        if (email.trim() === '') {
-            return true;
-        }
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    }
 
     // Função para validar telefone (formato brasileiro)
     function isValidPhone(phone) {
@@ -41,60 +30,16 @@ document.addEventListener('DOMContentLoaded', function () {
         return phoneRegex.test(phone) || phone.trim() === '';
     }
 
-    // Validação em tempo real
-    function validateForm() {
-        const isNomeValid = nomeInput.value.trim().length >= 2;
-        const isEmailValid = isValidEmail(emailInput.value);
-        const isPhoneValid = isValidPhone(telefoneInput.value);
-
-        // Atualizar estilos dos campos
-        updateFieldStyle(nomeInput, isNomeValid);
-        updateFieldStyle(emailInput, isEmailValid);
-        updateFieldStyle(telefoneInput, isPhoneValid);
-
-        // Habilitar/desabilitar botão de submit
-        const isFormValid = isNomeValid && isEmailValid && isPhoneValid;
-        submitButton.disabled = !isFormValid;
-        
-        if (isFormValid) {
-            submitButton.classList.remove('opacity-50', 'cursor-not-allowed');
-            submitButton.classList.add('hover:bg-purple-400');
-        } else {
-            submitButton.classList.add('opacity-50', 'cursor-not-allowed');
-            submitButton.classList.remove('hover:bg-purple-400');
-        }
-    }
-
-    // Função para atualizar estilo dos campos
-    function updateFieldStyle(input, isValid) {
-        if (input.value.trim() === '') {
-            // Campo vazio - estilo neutro
-            input.classList.remove('border-red-500', 'border-green-500');
-            input.classList.add('border-gray-300');
-        } else if (isValid) {
-            // Campo válido
-            input.classList.remove('border-red-500', 'border-gray-300');
-            input.classList.add('border-green-500');
-        } else {
-            // Campo inválido
-            input.classList.remove('border-green-500', 'border-gray-300');
-            input.classList.add('border-red-500');
-        }
-    }
-
-    // Adicionar event listeners
-    if (nomeInput) nomeInput.addEventListener('input', validateForm);
-    if (emailInput) emailInput.addEventListener('input', validateForm);
-    if (telefoneInput) telefoneInput.addEventListener('input', validateForm);
-
-    // Validação inicial
-    validateForm();
-
     // Máscara para telefone
     if (telefoneInput) {
-        telefoneInput.addEventListener('input', function(e) {
+        telefoneInput.addEventListener('input', function (e) {
             let value = e.target.value.replace(/\D/g, '');
-            
+
+            if (value.length === 0) {
+                e.target.value = '';
+                return;
+            }
+
             if (value.length <= 11) {
                 if (value.length <= 2) {
                     value = value.replace(/(\d{0,2})/, '($1');
@@ -106,9 +51,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     value = value.replace(/(\d{2})(\d{5})(\d{0,4})/, '($1) $2-$3');
                 }
             }
-            
+
             e.target.value = value;
-            validateForm();
+
+            isValidPhone(e.target.value);
         });
     }
 });
@@ -126,70 +72,70 @@ function dismissMessage(messageId) {
 }
 
 function incrementCounter(fieldId) {
-            const field = document.getElementById(fieldId);
-            const currentValue = parseInt(field.value) || 0;
-            const maxValue = parseInt(field.getAttribute('max')) || 10;
-            if (currentValue < maxValue) {
-                field.value = currentValue + 1;
-                toggleNamesContainer(fieldId);
-                updateFormValidation();
-            }
-        }
+    const field = document.getElementById(fieldId);
+    const currentValue = parseInt(field.value) || 0;
+    const maxValue = parseInt(field.getAttribute('max')) || 10;
+    if (currentValue < maxValue) {
+        field.value = currentValue + 1;
+        toggleNamesContainer(fieldId);
+        updateFormValidation();
+    }
+}
 
-        function decrementCounter(fieldId, minValue = 0) {
-            const field = document.getElementById(fieldId);
-            const currentValue = parseInt(field.value) || 0;
-            if (currentValue > minValue) {
-                field.value = currentValue - 1;
-                toggleNamesContainer(fieldId);
-                updateFormValidation();
-            }
-        }
+function decrementCounter(fieldId, minValue = 0) {
+    const field = document.getElementById(fieldId);
+    const currentValue = parseInt(field.value) || 0;
+    if (currentValue > minValue) {
+        field.value = currentValue - 1;
+        toggleNamesContainer(fieldId);
+        updateFormValidation();
+    }
+}
 
-        function toggleNamesContainer(fieldId) {
-            const value = parseInt(document.getElementById(fieldId).value) || 0;
-            const isAdultos = fieldId.includes('adultos');
-            const container = document.getElementById(isAdultos ? 'nomes-adultos-container' : 'nomes-criancas-container');
-            const textarea = document.getElementById(isAdultos ? 'id_nomes_adultos' : 'id_nomes_criancas');
-            
-            if ((isAdultos && value > 1) || (!isAdultos && value > 0)) {
-                container.style.display = 'block';
-                textarea.required = true;
-            } else {
-                container.style.display = 'none';
-                textarea.required = false;
-                textarea.value = '';
-            }
-        }
+function toggleNamesContainer(fieldId) {
+    const value = parseInt(document.getElementById(fieldId).value) || 0;
+    const isAdultos = fieldId.includes('adultos');
+    const container = document.getElementById(isAdultos ? 'nomes-adultos-container' : 'nomes-criancas-container');
+    const textarea = document.getElementById(isAdultos ? 'id_nomes_adultos' : 'id_nomes_criancas');
 
-        function updateFormValidation() {
-            const qtdAdultos = parseInt(document.getElementById('id_qtd_adultos').value) || 1;
-            const qtdCriancas = parseInt(document.getElementById('id_qtd_criancas').value) || 0;
-            const nomesAdultos = document.getElementById('id_nomes_adultos');
-            const nomesCriancas = document.getElementById('id_nomes_criancas');
+    if ((isAdultos && value > 1) || (!isAdultos && value > 0)) {
+        container.style.display = 'block';
+        textarea.required = true;
+    } else {
+        container.style.display = 'none';
+        textarea.required = false;
+        textarea.value = '';
+    }
+}
 
-            // Atualizar placeholder com a quantidade esperada
-            if (qtdAdultos > 1) {
-                nomesAdultos.placeholder = `Digite ${qtdAdultos - 1} nome(s) de acompanhante(s) adulto(s) (um por linha)`;
-            }
-            if (qtdCriancas > 0) {
-                nomesCriancas.placeholder = `Digite ${qtdCriancas} nome(s) de criança(s) (um por linha)`;
-            }
-        }
+function updateFormValidation() {
+    const qtdAdultos = parseInt(document.getElementById('id_qtd_adultos').value) || 1;
+    const qtdCriancas = parseInt(document.getElementById('id_qtd_criancas').value) || 0;
+    const nomesAdultos = document.getElementById('id_nomes_adultos');
+    const nomesCriancas = document.getElementById('id_nomes_criancas');
 
-        // Inicializar ao carregar a página
-        document.addEventListener('DOMContentLoaded', function() {
-            toggleNamesContainer('id_qtd_adultos');
-            toggleNamesContainer('id_qtd_criancas');
-            updateFormValidation();
+    // Atualizar placeholder com a quantidade esperada
+    if (qtdAdultos > 1) {
+        nomesAdultos.placeholder = `Digite ${qtdAdultos - 1} nome(s) de acompanhante(s) adulto(s) (um por linha)`;
+    }
+    if (qtdCriancas > 0) {
+        nomesCriancas.placeholder = `Digite ${qtdCriancas} nome(s) de criança(s) (um por linha)`;
+    }
+}
 
-            // Adicionar listeners para os contadores
-            document.getElementById('id_qtd_adultos').addEventListener('change', function() {
-                toggleNamesContainer('id_qtd_adultos');
-                updateFormValidation();
-            });
-            document.getElementById('id_qtd_criancas').addEventListener('change', function() {
-                toggleNamesContainer('id_qtd_criancas');
-                updateFormValidation();
-            });
-        });
+// Inicializar ao carregar a página
+document.addEventListener('DOMContentLoaded', function () {
+    toggleNamesContainer('id_qtd_adultos');
+    toggleNamesContainer('id_qtd_criancas');
+    updateFormValidation();
+
+    // Adicionar listeners para os contadores
+    document.getElementById('id_qtd_adultos').addEventListener('change', function () {
+        toggleNamesContainer('id_qtd_adultos');
+        updateFormValidation();
+    });
+    document.getElementById('id_qtd_criancas').addEventListener('change', function () {
+        toggleNamesContainer('id_qtd_criancas');
+        updateFormValidation();
+    });
+});

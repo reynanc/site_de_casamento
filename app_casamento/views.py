@@ -6,8 +6,8 @@ from django.views.decorators.http import require_POST
 from django.conf import settings
 import mercadopago
 import json
-from .forms import ConvidadosForm, PartidaForm, PresensaForm, CompraForm
-from .models import Convidados, Presencas, Visitante, Presente, CompraPresente
+from .forms import MensagemForm, PartidaForm, PresensaForm, CompraForm
+from .models import Mensagem, Convidado, Visitante, Presente, CompraPresente
 from .api_mercado_pago import criar_pagamento_presente
 
 def get_contador_visitantes():
@@ -229,16 +229,16 @@ def webhook_mercadopago(request):
 
 def mensagens(request):
     if request.method == 'POST':
-        form = ConvidadosForm(request.POST)
+        form = MensagemForm(request.POST)
         if form.is_valid():
             form.save()
             messages.success(request, 'Sua mensagem foi enviada com sucesso! Obrigado por fazer parte deste momento especial.')
             return redirect('mensagens')
     else:
-        form = ConvidadosForm()
+        form = MensagemForm()
     
     # Buscar todas as mensagens do banco de dados
-    mensagens_enviadas = Convidados.objects.all().order_by('-criado_em')
+    mensagens_enviadas = Mensagem.objects.all().order_by('-criado_em')
     
     context = {
         'form': form,

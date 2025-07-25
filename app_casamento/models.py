@@ -2,7 +2,7 @@ from django.db import models
 from django.utils import timezone
 import uuid
 
-class Convidados(models.Model):
+class Mensagem(models.Model):
     id = models.AutoField(primary_key=True)
     criado_em = models.DateTimeField(default=timezone.now,null=True,blank=True,verbose_name="Criado em")
     nome = models.CharField(max_length=100, blank=True, null=True, verbose_name="Nome")
@@ -12,7 +12,7 @@ class Convidados(models.Model):
     def __str__(self):
         return self.nome
 
-class Presencas(models.Model):
+class Convidado(models.Model):
     id = models.AutoField(primary_key=True)
     criado_em = models.DateTimeField(default=timezone.now,null=True,blank=True,verbose_name="Criado em")
     nome = models.CharField(max_length=100, blank=True, null=True, verbose_name="Nome")
