@@ -110,8 +110,8 @@ def comprar_presente(request, presente_id):
             compra.save()
             
             try:
-                link_retorno = f'http://127.0.0.1:8000/lista-presentes/?compra_id={compra.id}&status=approved'
-                link_pagamento, id_pagamento = criar_pagamento_presente(presente, link_retorno)
+                link_retorno = f'https://www.laynan.com.br/lista-presentes/?compra_id={compra.id}&status=approved'
+                link_pagamento, id_pagamento = criar_pagamento_presente(presente, link_retorno, compra.id)
 
                 compra.preference_id = id_pagamento
                 compra.save()
@@ -187,6 +187,14 @@ def pagamento_pendente(request):
 @csrf_exempt
 @require_POST
 def webhook_mercadopago(request):
+    # IPs permitidos do Mercado Pago
+    allowed_ips = [
+        '209.225.49.0/24',
+        '216.33.197.0/24', 
+        '216.33.196.0/24',
+        '209.225.48.0/24'
+    ]
+    
     try:
         data = json.loads(request.body)
         
