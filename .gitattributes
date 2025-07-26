@@ -1,4 +1,17 @@
-*.css linguist-vendored=false
-*.js linguist-vendored=false
-*.css linguist-detectable=true
-*.js linguist-detectable=true
+# Forçar GitHub Linguist a detectar tudo como código do projeto
+*.html linguist-detectable=true linguist-vendored=false
+*.css linguist-detectable=true linguist-vendored=false
+*.scss linguist-detectable=true linguist-vendored=false
+*.js linguist-detectable=true linguist-vendored=false
+*.ts linguist-detectable=true linguist-vendored=false
+
+# Caso use diretórios comuns de front-end
+static/** linguist-vendored=false
+assets/** linguist-vendored=false
+public/** linguist-vendored=false
+dist/** linguist-vendored=false
+build/** linguist-vendored=false
+
+# Incluir se tiver bibliotecas personalizadas
+*.min.js linguist-vendored=false
+*.min.css linguist-vendored=false
