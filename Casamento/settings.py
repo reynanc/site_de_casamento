@@ -27,6 +27,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['192.168.10.30', 'localhost', '127.0.0.1', 'www.laynan.com.br', 'laynan.com.br']
 
 
+
 # Application definition
 
 INSTALLED_APPS = [
