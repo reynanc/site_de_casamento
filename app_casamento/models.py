@@ -43,6 +43,7 @@ class Visitante(models.Model):
 class Presente(models.Model):
     CATEGORIA_CHOICES = [
         ('casa', 'Casa'),
+        ('sala', 'Sala'),
         ('cozinha', 'Cozinha'),
         ('quarto', 'Quarto'),
         ('banheiro', 'Banheiro'),
