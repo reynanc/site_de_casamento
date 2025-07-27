@@ -87,8 +87,25 @@ def lista_presentes(request):
         except CompraPresente.DoesNotExist:
             messages.error(request, 'Compra não encontrada.')
     
+    # Filtros e ordenação
+    categoria_filtro = request.GET.get('categoria', '')
+    ordenar_por = request.GET.get('ordenar', '')
+    
     # Mostrar todos os presentes, incluindo os esgotados
-    presentes = Presente.objects.all().order_by('categoria', 'nome')
+    presentes = Presente.objects.all()
+    
+    # Aplicar filtros
+    if categoria_filtro:
+        presentes = presentes.filter(categoria=categoria_filtro)
+
+    
+    # Aplicar ordenação
+    if ordenar_por == 'maior_preco':
+        presentes = presentes.order_by('-preco', 'nome')
+    elif ordenar_por == 'menor_preco':
+        presentes = presentes.order_by('preco', 'nome')
+    else:
+        presentes = presentes.order_by('categoria', 'nome')
     
     # Agrupar presentes por categoria
     presentes_por_categoria = {}
@@ -98,8 +115,23 @@ def lista_presentes(request):
             presentes_por_categoria[categoria] = []
         presentes_por_categoria[categoria].append(presente)
     
+    # Obter todas as categorias para o filtro
+    todas_categorias = Presente.CATEGORIA_CHOICES
+    
+    # Obter valores mínimo e máximo dos preços para os filtros
+    from django.db.models import Min, Max
+    preco_range = Presente.objects.aggregate(
+        preco_minimo=Min('preco'),
+        preco_maximo=Max('preco')
+    )
+    
     context = {
         'presentes_por_categoria': presentes_por_categoria,
+        'todas_categorias': todas_categorias,
+        'categoria_filtro': categoria_filtro,
+        'ordenar_por': ordenar_por,
+        'preco_minimo_db': preco_range['preco_minimo'] or 0,
+        'preco_maximo_db': preco_range['preco_maximo'] or 1000,
         'total_visitantes': get_contador_visitantes()
     }
     return render(request, 'lista_presentes.html', context)
