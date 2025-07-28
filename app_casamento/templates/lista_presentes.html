@@ -1065,17 +1065,17 @@
 
                     <!-- Ordenação -->
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Ordenar por:</label>
-                        <div class="flex gap-2">
-                            <a href="?{% if categoria_filtro %}categoria={{ categoria_filtro }}&{% endif %}ordenar=maior_preco"
-                               class="px-4 py-2 rounded-lg text-center transition-colors duration-300 {% if ordenar_por == 'maior_preco' %}bg-violet-300 text-white{% else %}bg-violet-100 text-violet-700 hover:bg-violet-200{% endif %}">
-                                Maior preço
-                            </a>
-                            <a href="?{% if categoria_filtro %}categoria={{ categoria_filtro }}&{% endif %}ordenar=menor_preco"
-                               class="px-4 py-2 rounded-lg text-center transition-colors duration-300 {% if ordenar_por == 'menor_preco' %}bg-violet-300 text-white{% else %}bg-violet-100 text-violet-700 hover:bg-violet-200{% endif %}">
-                                Menor preço
-                            </a>
-                        </div>
+                        <label for="ordenar" class="block text-sm font-medium text-gray-700 mb-2">Ordenar preço por:</label>
+                        <select name="ordenar" id="ordenar"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-300 focus:border-transparent">
+                            <option value="">Padrão</option>
+                            <option value="maior_preco" {% if ordenar_por == 'maior_preco' %}selected{% endif %}>Maior
+                                preço
+                            </option>
+                            <option value="menor_preco" {% if ordenar_por == 'menor_preco' %}selected{% endif %}>Menor
+                                preço
+                            </option>
+                        </select>
                     </div>
                 </div>
 
