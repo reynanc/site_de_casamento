@@ -2,13 +2,13 @@
 {% load static %}
 
 {% block content %}
-<div class="max-w-4xl mx-auto px-4 py-6">
+<div class="max-w-4xl mx-auto py-6">
     <div class="mt-20 mb-8">
         <a href="{% url 'lista_presentes' %}" class="text-violet-600 hover:text-violet-800 flex items-center mb-6">
             ← Voltar para lista de presentes
         </a>
         
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+        <div class="max-w-full mx-auto bg-gray-50 rounded-lg shadow-sm overflow-hidden">
             <div class="md:flex">
                 <div class="md:w-1/2">
                     {% if presente.imagem %}
