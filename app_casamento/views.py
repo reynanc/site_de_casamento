@@ -11,7 +11,7 @@ from .models import Mensagem, Convidado, Visitante, Presente, CompraPresente
 from .api_mercado_pago import criar_pagamento_presente
 
 def get_contador_visitantes():
-    """Função para obter o número total de visitantes únicos"""
+
     # Contar visitantes únicos dos últimos 30 dias para evitar acúmulo excessivo
     from datetime import timedelta
     from django.utils import timezone
@@ -27,19 +27,9 @@ def home(request):
 
 def cerimonia_espaco(request):
     form = PartidaForm()
-    
-    # Coordenadas do local do evento (Espaço Bouganville)
-    local_evento = {
-        'nome': 'Espaço Bouganville',
-        'lat': -23.123456,  # Substitua pelas coordenadas reais
-        'lng': -46.789012,  # Substitua pelas coordenadas reais
-        'endereco': 'Endereço completo do Espaço Bouganville',  # Substitua pelo endereço real
-        'data': '13 de dezembro de 2025'
-    }
-    
+
     context = {
         'form': form,
-        'local_evento': local_evento,
         'total_visitantes': get_contador_visitantes()
     }
     
