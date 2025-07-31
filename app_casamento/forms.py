@@ -107,8 +107,8 @@ class PresensaForm(forms.ModelForm):
             'nomes_adultos': 'Nome dos acompanhantes',
             'qtd_criancas': 'Crianças',
             'nomes_criancas': 'Nome das crianças',
-            'qtd_adolescentes': 'Adolescentes',
-            'nomes_adolescentes': 'Nome dos adolescentes',
+            'qtd_adolescentes': 'Adolescentes/Crianças',
+            'nomes_adolescentes': 'Nome dos adolescentes ou crianças',
         }
 
     def __init__(self, *args, **kwargs):

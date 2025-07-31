@@ -137,7 +137,7 @@ function updateFormValidation() {
         nomesCriancas.placeholder = `Digite ${qtdCriancas} nome(s) de criança(s) (um por linha)`;
     }
     if (qtdAdolescentes > 0) {
-        nomesAdolescentes.placeholder = `Digite ${qtdAdolescentes} nome(s) de adolescente(s) (um por linha)`;
+        nomesAdolescentes.placeholder = `Digite ${qtdAdolescentes} nome(s) de adolescente(s) ou crianças(s) (um por linha)`;
     }
 }
 
