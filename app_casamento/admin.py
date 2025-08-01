@@ -40,7 +40,7 @@ class ConvidadoAdmin(admin.ModelAdmin):
             'fields': ('nome', 'email', 'telefone')
         }),
         ('Acompanhantes', {
-            'fields': ('qtd_adultos', 'nomes_adultos', 'qtd_criancas', 'nomes_criancas')
+            'fields': ('qtd_adultos', 'nomes_adultos','qtd_adolescentes', 'nomes_adolescentes', 'qtd_criancas', 'nomes_criancas')
         }),
         ('Timestamps', {
             'fields': ('criado_em',),

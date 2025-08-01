@@ -51,7 +51,7 @@ class PartidaForm(forms.Form):
 class PresensaForm(forms.ModelForm):
     class Meta:
         model = Convidado
-        fields = ['nome', 'email', 'telefone', 'qtd_adultos', 'nomes_adultos', 'qtd_criancas', 'nomes_criancas']
+        fields = ['nome', 'email', 'telefone', 'qtd_adultos', 'nomes_adultos', 'qtd_criancas', 'nomes_criancas', 'qtd_adolescentes', 'nomes_adolescentes']
         widgets = {
             'nome': forms.TextInput(attrs={
                 'class': 'w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-300 focus:border-transparent transition duration-200',
@@ -68,7 +68,8 @@ class PresensaForm(forms.ModelForm):
             'qtd_adultos': forms.NumberInput(attrs={
                 'class': 'w-20 px-3 py-2 border border-gray-300 rounded-lg text-center',
                 'min': '1',
-                'max': '10'
+                'max': '10',
+                'readonly': True,
             }),
             'nomes_adultos': forms.Textarea(attrs={
                 'class': 'w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-300 focus:border-transparent transition duration-200',
@@ -78,11 +79,23 @@ class PresensaForm(forms.ModelForm):
             'qtd_criancas': forms.NumberInput(attrs={
                 'class': 'w-20 px-3 py-2 border border-gray-300 rounded-lg text-center',
                 'min': '0',
-                'max': '10'
+                'max': '10',
+                'readonly': True,
             }),
             'nomes_criancas': forms.Textarea(attrs={
                 'class': 'w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-300 focus:border-transparent transition duration-200',
                 'placeholder': 'Digite o nome de cada criança (um por linha)',
+                'rows': 3
+            }),
+            'qtd_adolescentes': forms.NumberInput(attrs={
+                'class': 'w-20 px-3 py-2 border border-gray-300 rounded-lg text-center',
+                'min': '0',
+                'max': '10',
+                'readonly': True,
+            }),
+            'nomes_adolescentes': forms.Textarea(attrs={  # Corrigido: era "nomes_adolescentes"
+                'class': 'w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-300 focus:border-transparent transition duration-200',
+                'placeholder': 'Digite o nome de cada adolescente (um por linha)',
                 'rows': 3
             }),
         }
@@ -93,7 +106,9 @@ class PresensaForm(forms.ModelForm):
             'qtd_adultos': 'Adultos',
             'nomes_adultos': 'Nome dos acompanhantes',
             'qtd_criancas': 'Crianças',
-            'nomes_criancas': 'Nome das crianças'
+            'nomes_criancas': 'Nome das crianças',
+            'qtd_adolescentes': 'Adolescentes/Crianças',
+            'nomes_adolescentes': 'Nome dos adolescentes ou crianças',
         }
 
     def __init__(self, *args, **kwargs):
@@ -108,6 +123,8 @@ class PresensaForm(forms.ModelForm):
         nomes_adultos = cleaned_data.get('nomes_adultos', '')
         qtd_criancas = cleaned_data.get('qtd_criancas', 0)
         nomes_criancas = cleaned_data.get('nomes_criancas', '')
+        qtd_adolescentes = cleaned_data.get('qtd_adolescentes', 0)
+        nomes_adolescentes = cleaned_data.get('nomes_adolescentes', '')
 
         # Validação para adultos (se mais de 1, nomes são obrigatórios)
         if qtd_adultos > 1 and not nomes_adultos.strip():
@@ -116,6 +133,10 @@ class PresensaForm(forms.ModelForm):
         # Validação para crianças (se mais de 0, nomes são obrigatórios)
         if qtd_criancas > 0 and not nomes_criancas.strip():
             self.add_error('nomes_criancas', 'Os nomes das crianças são obrigatórios quando há crianças.')
+
+        # Validação para adolescentes (se mais de 0, nomes são obrigatórios)
+        if qtd_adolescentes > 0 and not nomes_adolescentes.strip():
+            self.add_error('nomes_adolescentes', 'Os nomes dos adolescentes são obrigatórios quando há adolescentes.')
 
         # Validar se o número de nomes corresponde à quantidade
         if qtd_adultos > 1 and nomes_adultos.strip():
@@ -127,6 +148,12 @@ class PresensaForm(forms.ModelForm):
             nomes_lista = [nome.strip() for nome in nomes_criancas.split('\n') if nome.strip()]
             if len(nomes_lista) != qtd_criancas:
                 self.add_error('nomes_criancas', f'Você deve informar {qtd_criancas} nome(s) de criança(s).')
+
+        # Adicionar validação para adolescentes
+        if qtd_adolescentes > 0 and nomes_adolescentes.strip():
+            nomes_lista = [nome.strip() for nome in nomes_adolescentes.split('\n') if nome.strip()]
+            if len(nomes_lista) != qtd_adolescentes:
+                self.add_error('nomes_adolescentes', f'Você deve informar {qtd_adolescentes} nome(s) de adolescente(s).')
 
         return cleaned_data
 

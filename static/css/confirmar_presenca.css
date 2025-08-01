@@ -1,0 +1,14 @@
+#id_qtd_criancas[readonly] {
+    background-color: #eee;
+    cursor: not-allowed;
+}
+
+#id_qtd_adultos[readonly] {
+    background-color: #eee;
+    cursor: not-allowed;
+}
+
+#id_qtd_adolescentes[readonly] {
+    background-color: #eee;
+    cursor: not-allowed;
+}

@@ -9,9 +9,12 @@ import json
 from .forms import MensagemForm, PartidaForm, PresensaForm, CompraForm
 from .models import Mensagem, Convidado, Visitante, Presente, CompraPresente
 from .api_mercado_pago import criar_pagamento_presente
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 
 def get_contador_visitantes():
-    """Função para obter o número total de visitantes únicos"""
+
     # Contar visitantes únicos dos últimos 30 dias para evitar acúmulo excessivo
     from datetime import timedelta
     from django.utils import timezone
@@ -27,19 +30,9 @@ def home(request):
 
 def cerimonia_espaco(request):
     form = PartidaForm()
-    
-    # Coordenadas do local do evento (Espaço Bouganville)
-    local_evento = {
-        'nome': 'Espaço Bouganville',
-        'lat': -23.123456,  # Substitua pelas coordenadas reais
-        'lng': -46.789012,  # Substitua pelas coordenadas reais
-        'endereco': 'Endereço completo do Espaço Bouganville',  # Substitua pelo endereço real
-        'data': '13 de dezembro de 2025'
-    }
-    
+
     context = {
         'form': form,
-        'local_evento': local_evento,
         'total_visitantes': get_contador_visitantes()
     }
     
@@ -83,7 +76,12 @@ def lista_presentes(request):
                 compra.presente.quantidade -= 1
                 compra.presente.save()
             
-            messages.success(request, f'Pagamento aprovado! Obrigado por presentear {compra.presente.nome}!')
+            # Enviar email de agradecimento
+            if enviar_email_agradecimento(compra):
+                messages.success(request, f'Pagamento aprovado! Obrigado por presentear {compra.presente.nome}! Um email de confirmação foi enviado.')
+            else:
+                messages.success(request, f'Pagamento aprovado! Obrigado por presentear {compra.presente.nome}!')
+                
         except CompraPresente.DoesNotExist:
             messages.error(request, 'Compra não encontrada.')
     
@@ -180,7 +178,12 @@ def pagamento_sucesso(request):
                 compra.presente.quantidade -= 1
                 compra.presente.save()
             
-            messages.success(request, f'Pagamento aprovado! Obrigado por presentear {compra.presente.nome}!')
+            # Enviar email de agradecimento
+            if enviar_email_agradecimento(compra):
+                messages.success(request, f'Pagamento aprovado! Obrigado por presentear {compra.presente.nome}! Um email de confirmação foi enviado.')
+            else:
+                messages.success(request, f'Pagamento aprovado! Obrigado por presentear {compra.presente.nome}!')
+                
         except CompraPresente.DoesNotExist:
             messages.error(request, 'Compra não encontrada.')
     
@@ -259,6 +262,12 @@ def webhook_mercadopago(request):
                             if compra.presente.quantidade > 0:
                                 compra.presente.quantidade -= 1
                                 compra.presente.save()
+                            try:
+                                enviar_email_agradecimento(compra)
+                                print(f"Email enviado com sucesso para {compra.email_comprador}")
+                            except Exception as email_error:
+                                print(f"Erro ao enviar email: {email_error}")
+                                
                         elif payment_data['status'] == 'rejected':
                             compra.status = 'rejeitado'
                         elif payment_data['status'] in ['pending', 'in_process']:
@@ -270,6 +279,7 @@ def webhook_mercadopago(request):
         
         return HttpResponse(status=200)
     except Exception as e:
+        print(f"Erro no webhook: {e}")
         return HttpResponse(status=400)
 
 def mensagens(request):
@@ -292,4 +302,36 @@ def mensagens(request):
     }
     
     return render(request, 'mensagens.html', context)
+
+
+def enviar_email_agradecimento(compra):
+    """
+    Envia email de agradecimento para o comprador do presente
+    """
+    try:
+        # Contexto para o template do email
+        context = {
+            'nome_comprador': compra.nome_comprador,
+            'presente_nome': compra.presente.nome,
+            'presente_preco': compra.presente.preco,
+            'mensagem_comprador': compra.mensagem,
+        }
+        
+        # Renderizar template HTML do email
+        html_message = render_to_string('email_agradecimento.html', context)
+        plain_message = strip_tags(html_message)
+        
+        # Enviar email
+        send_mail(
+            subject=f'Obrigado pelo presente: {compra.presente.nome}!',
+            message=plain_message,
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=[compra.email_comprador],
+            html_message=html_message,
+            fail_silently=False,
+        )
+        return True
+    except Exception as e:
+        print(f'Erro ao enviar email: {e}')
+        return False
 

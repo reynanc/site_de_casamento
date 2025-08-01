@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Obrigado pelo presente!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .presente-info {
+            background-color: #e8f5e8;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 style="color: #8b5cf6; margin: 0;">💜 Muito Obrigado! 💜</h1>
+    </div>
+    
+    <div class="content">
+        <p>Olá, <strong>{{ nome_comprador }}</strong>!</p>
+        
+        <p>Ficamos imensamente felizes e gratos pelo seu carinho e generosidade! 🎁</p>
+        
+        <div class="presente-info">
+            <h3 style="margin-top: 0; color: #8b5cf6;">Presente Escolhido:</h3>
+            <p><strong>{{ presente_nome }}</strong></p>
+            <p><strong>Valor:</strong> R$ {{ presente_preco }}</p>
+        </div>
+        
+        {% if mensagem_comprador %}
+        <div style="background-color: #f0f8ff; padding: 15px; border-radius: 8px; margin: 15px 0;">
+            <h4 style="margin-top: 0; color: #8b5cf6;">Sua mensagem para nós:</h4>
+            <p style="font-style: italic;">"{{ mensagem_comprador }}"</p>
+        </div>
+        {% endif %}
+        
+        <p>Seu presente será muito especial para nós e nos ajudará a construir nosso lar com muito amor! ❤️</p>
+        
+        <p>Esperamos vê-lo(a) em nossa celebração para compartilharmos juntos esse momento único!</p>
+        
+        <p style="text-align: center; margin-top: 30px;">
+            <strong>Com todo nosso amor e gratidão,</strong><br>
+            <em>Os Noivos</em> 💕
+        </p>
+    </div>
+    
+    <div class="footer">
+        <p>Este é um email automático de confirmação de presente.</p>
+    </div>
+</body>
+</html>

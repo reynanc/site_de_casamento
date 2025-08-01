@@ -23,6 +23,8 @@ class Convidado(models.Model):
     nomes_adultos = models.TextField(blank=True, null=True, verbose_name="Nomes dos Adultos")
     qtd_criancas = models.PositiveIntegerField(default=0, verbose_name="Quantidade de Crianças")
     nomes_criancas = models.TextField(blank=True, null=True, verbose_name="Nomes das Crianças")
+    qtd_adolescentes = models.PositiveIntegerField(default=0, verbose_name="Quantidade de Adolescentes")
+    nomes_adolescentes = models.TextField(blank=True, null=True, verbose_name="Nomes dos Adolescentes") 
 
     def __str__(self):
         return self.nome

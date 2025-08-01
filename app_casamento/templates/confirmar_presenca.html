@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+    <link rel="stylesheet" href="{% static 'css/confirmar_presenca.css' %}">
 
     <div class="max-w-4xl mx-auto px-4 py-16">
         <div class="mt-20 max-w-2xl mx-auto text-center px-4 sm:px-6 lg:px-8">
@@ -1097,7 +1098,7 @@
                         <div class="flex items-center justify-between mb-3">
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 font-serif">{{ form.qtd_adultos.label }}</label>
-                                <p class="text-xs text-gray-500">Conta no buffet: (Acima de 6 anos)</p>
+                               <p class="text-xs text-gray-500">Apenas os convidados</p>
                             </div>
                             <div class="flex items-center space-x-3">
                                 <button type="button" onclick="decrementCounter('id_qtd_adultos', 1)"
@@ -1125,12 +1126,45 @@
                         </div>
                     </div>
 
-                    <!-- Crianças -->
+                <!-- Adolescente -->
+                    <div class="mb-4">
+                        <div class="flex items-center justify-between mb-3">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 font-serif">{{ form.qtd_adolescentes.label }}</label>
+                                <p class="text-xs text-gray-500">Faixa etária: (7 anos a 17 anos) - <strong class="text-xs"> Conta no buffet </strong></p>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <button type="button" onclick="decrementCounter('id_qtd_adolescentes', 0)"
+                                        class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100">
+                                    <span class="text-lg font-bold">−</span>
+                                </button>
+                                {{ form.qtd_adolescentes }}
+                                <button type="button" onclick="incrementCounter('id_qtd_adolescentes')"
+                                        class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100">
+                                    <span class="text-lg font-bold">+</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div id="nomes-adolescentes-container" style="display: none;">
+                            <label for="{{ form.nomes_adolescentes.id_for_label }}"
+                                   class="block text-sm font-medium text-gray-700 mb-2 font-serif">
+                                {{ form.nomes_adolescentes.label }} *
+                            </label>
+                            {{ form.nomes_adolescentes }}
+                            {% if form.nomes_adolescentes.errors %}
+                                <div class="mt-1 text-sm text-red-600">
+                                    {{ form.nomes_adolescentes.errors.0 }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                <!-- Crianças -->
                     <div class="mb-4">
                         <div class="flex items-center justify-between mb-3">
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 font-serif">{{ form.qtd_criancas.label }}</label>
-                                <p class="text-xs text-gray-500">Faixa etária: (Até 6 anos)</p>
+                                <p class="text-xs text-gray-500">Faixa etária: (Até 6 anos) - <strong class="text-xs"> Acesso livre </strong></p>
                             </div>
                             <div class="flex items-center space-x-3">
                                 <button type="button" onclick="decrementCounter('id_qtd_criancas', 0)"
