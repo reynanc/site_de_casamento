@@ -262,6 +262,12 @@ def webhook_mercadopago(request):
                             if compra.presente.quantidade > 0:
                                 compra.presente.quantidade -= 1
                                 compra.presente.save()
+                            try:
+                                enviar_email_agradecimento(compra)
+                                print(f"Email enviado com sucesso para {compra.email_comprador}")
+                            except Exception as email_error:
+                                print(f"Erro ao enviar email: {email_error}")
+                                
                         elif payment_data['status'] == 'rejected':
                             compra.status = 'rejeitado'
                         elif payment_data['status'] in ['pending', 'in_process']:
@@ -273,6 +279,7 @@ def webhook_mercadopago(request):
         
         return HttpResponse(status=200)
     except Exception as e:
+        print(f"Erro no webhook: {e}")
         return HttpResponse(status=400)
 
 def mensagens(request):
