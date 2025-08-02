@@ -71,29 +71,6 @@ Um site completo para casamento desenvolvido em **Django**, com sistema de confi
 
 ---
 
-## 📁 Estrutura do Projeto
-
-site_de_casamento/
-├── Casamento/ # Configurações do Django
-│ ├── settings.py # Configurações principais
-│ ├── urls.py # URLs principais
-│ └── wsgi.py # Configuração WSGI
-├── app_casamento/ # Aplicação principal
-│ ├── models.py # Modelos de dados
-│ ├── views.py # Lógica das views
-│ ├── forms.py # Formulários
-│ ├── admin.py # Configuração do admin
-│ ├── api_mercado_pago.py # Integração MercadoPago
-│ ├── middleware.py # Middleware personalizado
-│ └── templates/ # Templates HTML
-├── static/ # Arquivos estáticos (CSS, JS, imagens)
-├── media/ # Uploads de usuários
-├── templates/ # Templates base
-└── requirements.txt # Dependências
-
-
----
-
 ## 🚀 Configuração e Instalação
 
 ### 1. Clonar o Repositório 
