@@ -1,7 +1,4 @@
-# Vamos salvar o conteúdo do README final no arquivo README.md existente
-
-readme_content = """
-# 💍 Site de Casamento - Laiane & Reynan 💜
+# 💍 Site de Casamento
 
 Um site completo para casamento desenvolvido em **Django**, com sistema de confirmação de presença, lista de presentes com pagamentos via **MercadoPago** e envio automático de emails de agradecimento.
 
