@@ -12,15 +12,16 @@ from .api_mercado_pago import criar_pagamento_presente
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
+from datetime import timedelta
+from django.utils import timezone
 
 def get_contador_visitantes():
-
-    # Contar visitantes únicos dos últimos 30 dias para evitar acúmulo excessivo
-    from datetime import timedelta
-    from django.utils import timezone
-    
     data_limite = timezone.now() - timedelta(days=30)
-    return Visitante.objects.filter(visitado_em__gte=data_limite).count()
+    return (Visitante.objects
+            .filter(visitado_em__gte=data_limite)
+            .values('hash_id')
+            .distinct()
+            .count())
 
 def home(request):
     context = {

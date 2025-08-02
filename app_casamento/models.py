@@ -29,16 +29,18 @@ class Convidado(models.Model):
     def __str__(self):
         return self.nome
 
+
 class Visitante(models.Model):
     ip_address = models.GenericIPAddressField()
     user_agent = models.TextField(blank=True, null=True)
     visitado_em = models.DateTimeField(default=timezone.now)
     pagina = models.CharField(max_length=255, default='/')
-    
+    hash_id = models.CharField(max_length=32, db_index=True, blank=True, null=True)
+
     class Meta:
         verbose_name = "Visitante"
         verbose_name_plural = "Visitantes"
-    
+
     def __str__(self):
         return f"{self.ip_address} - {self.visitado_em}"
 
