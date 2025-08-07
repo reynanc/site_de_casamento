@@ -73,7 +73,7 @@ class PresensaForm(forms.ModelForm):
             }),
             'nomes_adultos': forms.Textarea(attrs={
                 'class': 'w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-300 focus:border-transparent transition duration-200',
-                'placeholder': 'Digite o nome de cada acompanhante adulto (um por linha)',
+                'placeholder': 'Digite o nome de cada acompanhante (um por linha)',
                 'rows': 3
             }),
             'qtd_criancas': forms.NumberInput(attrs={
@@ -103,7 +103,7 @@ class PresensaForm(forms.ModelForm):
             'nome': 'Nome *',
             'telefone': 'Telefone',
             'email': 'E-mail',
-            'qtd_adultos': 'Adultos',
+            'qtd_adultos': 'Adultos|Criança|Adolescentes',
             'nomes_adultos': 'Nome dos acompanhantes',
             'qtd_criancas': 'Crianças',
             'nomes_criancas': 'Nome das crianças',
