@@ -1096,10 +1096,10 @@
                     <!-- Adultos -->
                     <div class="mb-4">
                         <div class="flex items-center justify-between mb-3">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 font-serif">{{ form.qtd_adultos.label }}</label>
-                               <p class="text-xs text-gray-500">Apenas os convidados</p>
-                            </div>
+{#                            <div>#}
+{#                                <label class="block text-sm font-medium text-gray-700 font-serif">{{ form.qtd_adultos.label }}</label>#}
+{#                               <p class="text-xs text-gray-500">Apenas os convidados</p>#}
+{#                            </div>#}
                             <div class="flex items-center space-x-3">
                                 <button type="button" onclick="decrementCounter('id_qtd_adultos', 1)"
                                         class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100">
@@ -1133,17 +1133,17 @@
                                 <label class="block text-sm font-medium text-gray-700 font-serif">{{ form.qtd_adolescentes.label }}</label>
                                 <p class="text-xs text-gray-500">Faixa etária: (7 anos ou mais) - <strong class="text-xs"> Conta no buffet </strong></p>
                             </div>
-                            <div class="flex items-center space-x-3">
-                                <button type="button" onclick="decrementCounter('id_qtd_adolescentes', 0)"
-                                        class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100">
-                                    <span class="text-lg font-bold">−</span>
-                                </button>
-                                {{ form.qtd_adolescentes }}
-                                <button type="button" onclick="incrementCounter('id_qtd_adolescentes')"
-                                        class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100">
-                                    <span class="text-lg font-bold">+</span>
-                                </button>
-                            </div>
+{#                            <div class="flex items-center space-x-3">#}
+{#                                <button type="button" onclick="decrementCounter('id_qtd_adolescentes', 0)"#}
+{#                                        class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100">#}
+{#                                    <span class="text-lg font-bold">−</span>#}
+{#                                </button>#}
+{#                                {{ form.qtd_adolescentes }}#}
+{#                                <button type="button" onclick="incrementCounter('id_qtd_adolescentes')"#}
+{#                                        class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100">#}
+{#                                    <span class="text-lg font-bold">+</span>#}
+{#                                </button>#}
+{#                            </div>#}
                         </div>
                         <div id="nomes-adolescentes-container" style="display: none;">
                             <label for="{{ form.nomes_adolescentes.id_for_label }}"
@@ -1166,17 +1166,17 @@
                                 <label class="block text-sm font-medium text-gray-700 font-serif">{{ form.qtd_criancas.label }}</label>
                                 <p class="text-xs text-gray-500">Faixa etária: (Até 6 anos) - <strong class="text-xs"> Acesso livre </strong></p>
                             </div>
-                            <div class="flex items-center space-x-3">
-                                <button type="button" onclick="decrementCounter('id_qtd_criancas', 0)"
-                                        class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100">
-                                    <span class="text-lg font-bold">−</span>
-                                </button>
-                                {{ form.qtd_criancas }}
-                                <button type="button" onclick="incrementCounter('id_qtd_criancas')"
-                                        class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100">
-                                    <span class="text-lg font-bold">+</span>
-                                </button>
-                            </div>
+{#                            <div class="flex items-center space-x-3">#}
+{#                                <button type="button" onclick="decrementCounter('id_qtd_criancas', 0)"#}
+{#                                        class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100">#}
+{#                                    <span class="text-lg font-bold">−</span>#}
+{#                                </button>#}
+{#                                {{ form.qtd_criancas}}#}
+{#                                <button type="button" onclick="incrementCounter('id_qtd_criancas')"#}
+{#                                        class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100">#}
+{#                                    <span class="text-lg font-bold">+</span>#}
+{#                                </button>#}
+{#                            </div>#}
                         </div>
                         <div id="nomes-criancas-container" style="display: none;">
                             <label for="{{ form.nomes_criancas.id_for_label }}"
@@ -1195,7 +1195,7 @@
 
                 <div class="text-center pt-4">
                     <button type="submit"
-                            class="px-8 py-3 bg-violet-300 hover:bg-violet-400 text-white rounded-lg transition duration-200 font-medium text-lg">
+                            class="bg-violet-300 hover:bg-violet-400 text-white font-serif font-medium py-3 px-8 rounded-lg transition duration-200 transform hover:scale-105 shadow-md">
                         Confirmar Presença
                     </button>
                 </div>
