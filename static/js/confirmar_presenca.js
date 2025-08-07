@@ -95,23 +95,15 @@ function decrementCounter(fieldId, minValue = 0) {
 function toggleNamesContainer(fieldId) {
     const value = parseInt(document.getElementById(fieldId).value) || 0;
     const isAdultos = fieldId.includes('adultos');
-    const isCriancas = fieldId.includes('criancas');
-    const isAdolescentes = fieldId.includes('adolescentes');
     
     let container, textarea;
     
     if (isAdultos) {
         container = document.getElementById('nomes-adultos-container');
         textarea = document.getElementById('id_nomes_adultos');
-    } else if (isCriancas) {
-        container = document.getElementById('nomes-criancas-container');
-        textarea = document.getElementById('id_nomes_criancas');
-    } else if (isAdolescentes) {
-        container = document.getElementById('nomes-adolescentes-container');
-        textarea = document.getElementById('id_nomes_adolescentes');
     }
 
-    if ((isAdultos && value > 1) || (isCriancas && value > 0) || (isAdolescentes && value > 0)) {
+    if ((isAdultos && value > 1)) {
         container.style.display = 'block';
         textarea.required = true;
     } else {
@@ -123,28 +115,17 @@ function toggleNamesContainer(fieldId) {
 
 function updateFormValidation() {
     const qtdAdultos = parseInt(document.getElementById('id_qtd_adultos').value) || 1;
-    const qtdCriancas = parseInt(document.getElementById('id_qtd_criancas').value) || 0;
-    const qtdAdolescentes = parseInt(document.getElementById('id_qtd_adolescentes').value) || 0;
     const nomesAdultos = document.getElementById('id_nomes_adultos');
-    const nomesCriancas = document.getElementById('id_nomes_criancas');
-    const nomesAdolescentes = document.getElementById('id_nomes_adolescentes');
 
     // Atualizar placeholder com a quantidade esperada
     if (qtdAdultos > 1) {
-        nomesAdultos.placeholder = `Digite ${qtdAdultos - 1} nome(s) de acompanhante(s) adulto(s) (um por linha)`;
-    }
-    if (qtdCriancas > 0) {
-        nomesCriancas.placeholder = `Digite ${qtdCriancas} nome(s) de criança(s) (um por linha)`;
-    }
-    if (qtdAdolescentes > 0) {
-        nomesAdolescentes.placeholder = `Digite ${qtdAdolescentes} nome(s) de adolescente(s) ou crianças(s) (um por linha)`;
+        nomesAdultos.placeholder = `Digite ${qtdAdultos - 1} nome(s) de acompanhante(s) (um por linha)`;
     }
 }
 
 // Inicializar ao carregar a página
 document.addEventListener('DOMContentLoaded', function () {
     toggleNamesContainer('id_qtd_adultos');
-    toggleNamesContainer('id_qtd_criancas');
     updateFormValidation();
 
     // Adicionar listeners para os contadores
@@ -152,17 +133,4 @@ document.addEventListener('DOMContentLoaded', function () {
         toggleNamesContainer('id_qtd_adultos');
         updateFormValidation();
     });
-    document.getElementById('id_qtd_criancas').addEventListener('change', function () {
-        toggleNamesContainer('id_qtd_criancas');
-        updateFormValidation();
-    });
-    
-    // Adicionar listener para adolescentes
-    document.getElementById('id_qtd_adolescentes').addEventListener('change', function () {
-        toggleNamesContainer('id_qtd_adolescentes');
-        updateFormValidation();
-    });
-    
-    // Inicializar adolescentes
-    toggleNamesContainer('id_qtd_adolescentes');
 });
