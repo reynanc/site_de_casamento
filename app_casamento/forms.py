@@ -165,7 +165,7 @@ class CompraForm(forms.ModelForm):
         widgets = {
             'nome_comprador': forms.TextInput(attrs={
                 'class': 'w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-300 focus:border-transparent transition duration-200',
-                'placeholder': 'Seu nome completo *'
+                'placeholder': 'Seu nome *'
             }),
             'email_comprador': forms.EmailInput(attrs={
                 'class': 'w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-300 focus:border-transparent transition duration-200',
