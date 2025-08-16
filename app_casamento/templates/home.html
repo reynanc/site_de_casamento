@@ -30,7 +30,7 @@
     </div>
 
     <!-- Contagem Regressiva -->
-    <div class="relative pt-28">
+    <div class="relative pt-28" id="contagem-section">
         <div class="w-full max-w-4xl mx-auto">
             <h2 class="text-sm sm:text-base lg:text-xl text-gray-800 mb-10 tracking-widest font-light text-center px-4 sm:px-6 lg:px-8">CONTAGEM REGRESSIVA PARA O GRANDE DIA</h2>
             <div class="flex flex-wrap justify-center gap-6 text-center">
@@ -65,6 +65,21 @@
                     <div class="text-xs text-gray-600 tracking-wider">Segundos</div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Mensagem de Casados (oculta inicialmente) -->
+    <div class="relative pt-28 hidden" id="casados-section">
+        <div class="w-full max-w-4xl mx-auto text-center">
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl text-gray-800 mb-8 tracking-widest font-light px-4 sm:px-6 lg:px-8">ESTAMOS CASADOS!</h2>
+            <div class="bg-gradient-to-r from-violet-400 to-purple-300 rounded-lg p-8 mx-4 sm:mx-6 lg:mx-8">
+                <div class="text-white">
+                    <h3 class="text-xl sm:text-2xl alex-brush-regular mb-4">Laiane & Reynan</h3>
+                    <p class="text-sm sm:text-base lg:text-lg font-light tracking-wide mb-4">UNIDOS SOB A BÊNÇÃO DE DEUS</p>
+                    <p class="text-xs sm:text-sm text-gray-100">13 de Dezembro de 2025</p>
+                </div>
+            </div>
+            <p class="text-sm sm:text-base lg:text-lg text-gray-600 mt-8 px-4 sm:px-6 lg:px-8 font-light tracking-wide">OBRIGADO POR FAZEREM PARTE DO NOSSO GRANDE DIA!</p>
         </div>
     </div>
 
@@ -1124,7 +1139,7 @@
         </div>
 
         <!-- Carrossel de Fotos -->
-        <div id="controls-carousel" class="relative w-full max-w-4xl mx-auto mb-16" data-carousel="static"
+        <div id="controls-carousel" class="relative w-full max-w-4xl mx-auto mb-16" data-carousel="slide" data-carousel-interval="3000"
              style="z-index: 10;">
             <!-- Carousel wrapper -->
             <div class="relative h-96 overflow-hidden rounded-lg md:h-[500px]">
