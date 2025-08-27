@@ -1092,36 +1092,42 @@
             </form>
         </div>
 
-        {% if presentes_por_categoria %}
+                {% if presentes_por_categoria %}
             {% for categoria, presentes in presentes_por_categoria.items %}
                 <div class="mb-12">
                     <h3 class="text-2xl font-serif text-gray-800 mb-6 border-b-2 border-purple-200 pb-2">{{ categoria }}</h3>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {% for presente in presentes %}
-                            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
                                 {% if presente.imagem %}
-                                    <div class="h-64 w-full overflow-hidden">
+                                    <div class="h-64 w-full overflow-hidden flex-shrink-0">
                                         <img src="{{ presente.imagem.url }}" alt="{{ presente.nome }}"
                                              class="w-full h-64 object-contain">
                                     </div>
                                 {% else %}
-                                    <div class="w-full h-64 bg-gray-200 flex items-center justify-center">
+                                    <div class="w-full h-64 bg-gray-200 flex items-center justify-center flex-shrink-0">
                                         <span class="text-gray-500">Sem imagem</span>
                                     </div>
                                 {% endif %}
 
-                                <div class="p-6">
-                                    <h4 class="text-xl font-semibold text-gray-800 mb-2">{{ presente.nome }}</h4>
+                                <div class="p-6 flex flex-col flex-grow">
+                                    <h4 class="text-xl font-semibold text-gray-800 mb-2 h-14 flex items-start overflow-hidden">
+                                        <span class="line-clamp-2">{{ presente.nome }}</span>
+                                    </h4>
 
                                     {% if presente.descricao %}
-                                        <p class="text-gray-600 mb-4 text-sm">{{ presente.descricao|truncatewords:15 }}</p>
+                                        <p class="text-gray-600 mb-4 text-sm h-12 overflow-hidden">
+                                            <span class="line-clamp-2">{{ presente.descricao|truncatewords:15 }}</span>
+                                        </p>
+                                    {% else %}
+                                        <div class="mb-4 h-12"></div>
                                     {% endif %}
 
-                                    <div class="flex items-center justify-between mb-4">
+                                    <div class="flex items-center justify-between mb-4 mt-auto">
                                         <span class="text-2xl font-bold text-violet-300">R$ {{ presente.preco }}</span>
                                         {% if presente.quantidade > 0 %}
-                                            <span class="text-sm text-green-600 font-medium"> disponível{{ presente.quantidade|pluralize:",eis" }}</span>
+                                            <span class="text-sm text-green-600 font-medium">disponível{{ presente.quantidade|pluralize:",eis" }}</span>
                                         {% else %}
                                             <span class="text-sm text-red-600 font-medium bg-red-100 px-2 py-1 rounded">Esgotado</span>
                                         {% endif %}
