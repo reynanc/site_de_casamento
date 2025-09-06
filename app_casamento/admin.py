@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Mensagem, Convidado
 from .models import Visitante
-from .models import Presente, CompraPresente
+from .models import Presente, CompraPresente, FotoCarrosel
 
 @admin.register(Mensagem)
 class MensagemAdmin(admin.ModelAdmin):
@@ -75,3 +75,27 @@ class CompraPresenteAdmin(admin.ModelAdmin):
     search_fields = ('nome_comprador', 'email_comprador', 'presente__nome')
     readonly_fields = ('id', 'payment_id', 'preference_id', 'criado_em', 'atualizado_em')
     ordering = ('-criado_em',)
+
+@admin.register(FotoCarrosel)
+class FotoCarroselAdmin(admin.ModelAdmin):
+    list_display = ('titulo', 'ordem', 'ativa', 'criado_em')
+    list_filter = ('ativa', 'criado_em')
+    search_fields = ('titulo',)
+    list_editable = ('ordem', 'ativa')
+    ordering = ('ordem', 'criado_em')
+
+    fieldsets = (
+        ('Informações da Foto', {
+            'fields': ('titulo', 'imagem')
+        }),
+        ('Configurações', {
+            'fields': ('ordem', 'ativa')
+        }),
+        ('Timestamps', {
+            'fields': ('criado_em',),
+            'classes': ('collapse',)
+        }),
+    )
+
+    def get_readonly_fields(self, request, obj=None):
+        return ('criado_em',)

@@ -1143,20 +1143,24 @@
              style="z-index: 10;">
             <!-- Carousel wrapper -->
             <div class="relative h-96 overflow-hidden rounded-lg md:h-[500px]">
-                <!-- Item 1 -->
+                {% for foto in fotos_carrossel %}
+                <!-- Item {{ forloop.counter }} -->
+                <div class="hidden duration-700 ease-in-out" data-carousel-item{% if forloop.first %}="active"{% endif %}>
+                    <img src="{{ foto.imagem.url }}"
+                         class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-cover"
+                         alt="{{ foto.titulo }}">
+                </div>
+                {% empty %}
+                <!-- Fallback caso não haja fotos -->
                 <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
-                    <img src="{% static 'images/IMG_0714.jpg' %}"
-                         class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-cover"
-                         alt="Foto do Casal 1">
+                    <div class="absolute block w-full h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 bg-gray-200 flex items-center justify-center">
+                        <p class="text-gray-500">Nenhuma foto disponível</p>
+                    </div>
                 </div>
-                <!-- Item 2 -->
-                <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <img src="{% static 'images/IMG_4742.JPG' %}"
-                         class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-cover"
-                         alt="Foto do Casal 2">
-                </div>
+                {% endfor %}
             </div>
             <!-- Slider controls -->
+            {% if fotos_carrossel|length > 1 %}
             <button type="button"
                     class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
                     data-carousel-prev>
@@ -1181,10 +1185,10 @@
                     <span class="sr-only">Próximo</span>
                 </span>
             </button>
+            {% endif %}
         </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
-
     <script src="{% static 'js/home.js' %}"></script>
 {% endblock %}

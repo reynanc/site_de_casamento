@@ -7,7 +7,7 @@ from django.conf import settings
 import mercadopago
 import json
 from .forms import MensagemForm, PartidaForm, PresensaForm, CompraForm
-from .models import Mensagem, Convidado, Visitante, Presente, CompraPresente
+from .models import Mensagem, Convidado, Visitante, Presente, CompraPresente, FotoCarrosel
 from .api_mercado_pago import criar_pagamento_presente
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
@@ -24,8 +24,10 @@ def get_contador_visitantes():
             .count())
 
 def home(request):
+    fotos_carrosel = FotoCarrosel.objects.filter(ativa=True).order_by('ordem')
     context = {
-        'total_visitantes': get_contador_visitantes()
+        'total_visitantes': get_contador_visitantes(),
+        'fotos_carrosel': fotos_carrosel
     }
     return render(request, 'home.html', context)
 
