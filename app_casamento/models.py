@@ -110,10 +110,15 @@ class CompraPresente(models.Model):
         return f"{self.nome_comprador} - {self.presente.nome}"
 
 class FotoCarrossel(models.Model):
+    IMAGENS_CHOICES = [
+        ('carrossel', 'Carrossel'),
+        ('banner', 'Banner Principal'),
+    ]
     titulo = models.CharField(max_length=100, verbose_name="Título", blank=True, null=True)
     imagem = models.ImageField(upload_to='carrossel/', verbose_name="Imagem", blank=True, null=True)
+    tipo = models.CharField(max_length=20, choices=IMAGENS_CHOICES, default='carrossel', verbose_name="Tipo")
     ordem = models.PositiveIntegerField(default=1, verbose_name="Ordem", help_text="Ordem em que a foto aparecerá no carrossel")
-    ativa = models.BooleanField(default=True, verbose_name="Ativa", help_text="Se marcado, a foto será exibida no carrossel")
+    ativa = models.BooleanField(default=True, verbose_name="Ativa", help_text="Se marcado, a foto será exibida")
     criado_em = models.DateTimeField(default=timezone.now, verbose_name="Criado em")
 
     class Meta:
