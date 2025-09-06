@@ -5,7 +5,11 @@
     <div class="relative min-h-screen pt-16">
         <!-- Imagem de Fundo com Overlay -->
         <div class="absolute inset-0 z-0">
-            <img src="{% static 'images/IMG_0714.jpg' %}" alt="Reynan e Laiane" class="w-full h-full object-cover">
+            {% if foto_banner %}
+                <img src="{{ foto_banner.imagem.url }}" alt="{{ foto_banner.titulo|default:'Reynan e Laiane' }}" class="w-full h-full object-cover">
+            {% else %}
+                <img src="{% static 'images/IMG_0714.jpg' %}" alt="Reynan e Laiane" class="w-full h-full object-cover">
+            {% endif %}
             <div class="absolute inset-0 bg-black opacity-60"></div>
         </div>
 

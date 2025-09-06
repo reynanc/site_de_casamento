@@ -78,15 +78,15 @@ class CompraPresenteAdmin(admin.ModelAdmin):
 
 @admin.register(FotoCarrossel)
 class FotoCarrosselAdmin(admin.ModelAdmin):
-    list_display = ('titulo', 'ordem', 'ativa', 'criado_em')
-    list_filter = ('ativa', 'criado_em')
+    list_display = ('titulo', 'tipo', 'ordem', 'ativa', 'criado_em')
+    list_filter = ('tipo', 'ativa', 'criado_em')
     search_fields = ('titulo',)
     list_editable = ('ordem', 'ativa')
     ordering = ('ordem', 'criado_em')
 
     fieldsets = (
         ('Informações da Foto', {
-            'fields': ('titulo', 'imagem')
+            'fields': ('titulo', 'imagem', 'tipo')
         }),
         ('Configurações', {
             'fields': ('ordem', 'ativa')

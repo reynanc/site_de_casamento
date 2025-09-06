@@ -25,9 +25,11 @@ def get_contador_visitantes():
 
 def home(request):
     fotos_carrossel = FotoCarrossel.objects.filter(ativa=True).order_by('ordem')
+    foto_banner = FotoCarrossel.objects.filter(ativa=True, tipo='banner').first()
     context = {
         'total_visitantes': get_contador_visitantes(),
-        'fotos_carrossel': fotos_carrossel
+        'fotos_carrossel': fotos_carrossel,
+        'foto_banner': foto_banner
     }
     return render(request, 'home.html', context)
 
