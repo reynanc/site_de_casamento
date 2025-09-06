@@ -6,7 +6,7 @@
         <!-- Imagem de Fundo com Overlay -->
         <div class="absolute inset-0 z-0">
             <img src="{% static 'images/IMG_0714.jpg' %}" alt="Reynan e Laiane" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-black opacity-30"></div>
+            <div class="absolute inset-0 bg-black opacity-60"></div>
         </div>
 
         <!-- Container Principal -->
@@ -1149,7 +1149,7 @@
                         <div class="hidden duration-700 ease-in-out" {% if forloop.first %}data-carousel-item="active"{% else %}data-carousel-item{% endif %}>
                             <img src="{{ foto.imagem.url }}"
                                  class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-cover"
-                                 alt="{{ foto.alt_text|default:'Foto do Casal' }}">
+                                 alt="{{ foto.titulo|default:'Foto do Casal' }}">
                         </div>
                     {% endfor %}
                 {% else %}
