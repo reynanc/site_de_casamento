@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Mensagem, Convidado
 from .models import Visitante
-from .models import Presente, CompraPresente, FotoCarrosel
+from .models import Presente, CompraPresente, FotoCarrossel
 
 @admin.register(Mensagem)
 class MensagemAdmin(admin.ModelAdmin):
@@ -76,8 +76,8 @@ class CompraPresenteAdmin(admin.ModelAdmin):
     readonly_fields = ('id', 'payment_id', 'preference_id', 'criado_em', 'atualizado_em')
     ordering = ('-criado_em',)
 
-@admin.register(FotoCarrosel)
-class FotoCarroselAdmin(admin.ModelAdmin):
+@admin.register(FotoCarrossel)
+class FotoCarrosselAdmin(admin.ModelAdmin):
     list_display = ('titulo', 'ordem', 'ativa', 'criado_em')
     list_filter = ('ativa', 'criado_em')
     search_fields = ('titulo',)

@@ -109,16 +109,16 @@ class CompraPresente(models.Model):
     def __str__(self):
         return f"{self.nome_comprador} - {self.presente.nome}"
 
-class FotoCarrosel(models.Model):
+class FotoCarrossel(models.Model):
     titulo = models.CharField(max_length=100, verbose_name="Título", blank=True, null=True)
-    imagem = models.ImageField(upload_to='carrosel/', verbose_name="Imagem", blank=True, null=True)
+    imagem = models.ImageField(upload_to='carrossel/', verbose_name="Imagem", blank=True, null=True)
     ordem = models.PositiveIntegerField(default=1, verbose_name="Ordem", help_text="Ordem em que a foto aparecerá no carrossel")
     ativa = models.BooleanField(default=True, verbose_name="Ativa", help_text="Se marcado, a foto será exibida no carrossel")
     criado_em = models.DateTimeField(default=timezone.now, verbose_name="Criado em")
 
     class Meta:
-        verbose_name = "Foto do Carrosel"
-        verbose_name_plural = "Fotos do Carrosel"
+        verbose_name = "Foto do Carrossel"
+        verbose_name_plural = "Fotos do Carrossel"
         ordering = ['ordem', 'criado_em']
 
     def __str__(self):

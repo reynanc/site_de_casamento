@@ -6,7 +6,7 @@
         <!-- Imagem de Fundo com Overlay -->
         <div class="absolute inset-0 z-0">
             <img src="{% static 'images/IMG_0714.jpg' %}" alt="Reynan e Laiane" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-black opacity-30"></div>
+            <div class="absolute inset-0 bg-black opacity-60"></div>
         </div>
 
         <!-- Container Principal -->
@@ -1143,24 +1143,31 @@
              style="z-index: 10;">
             <!-- Carousel wrapper -->
             <div class="relative h-96 overflow-hidden rounded-lg md:h-[500px]">
-                {% for foto in fotos_carrossel %}
-                <!-- Item {{ forloop.counter }} -->
-                <div class="hidden duration-700 ease-in-out" data-carousel-item{% if forloop.first %}="active"{% endif %}>
-                    <img src="{{ foto.imagem.url }}"
-                         class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-cover"
-                         alt="{{ foto.titulo }}">
-                </div>
-                {% empty %}
-                <!-- Fallback caso não haja fotos -->
-                <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
-                    <div class="absolute block w-full h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 bg-gray-200 flex items-center justify-center">
-                        <p class="text-gray-500">Nenhuma foto disponível</p>
+                {% if fotos_carrossel %}
+                    {% for foto in fotos_carrossel %}
+                        <!-- Item {{ forloop.counter }} -->
+                        <div class="hidden duration-700 ease-in-out" {% if forloop.first %}data-carousel-item="active"{% else %}data-carousel-item{% endif %}>
+                            <img src="{{ foto.imagem.url }}"
+                                 class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-cover"
+                                 alt="{{ foto.titulo|default:'Foto do Casal' }}">
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <!-- Item 1 (Fallback) -->
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
+                        <img src="{% static 'images/IMG_0714.jpg' %}"
+                             class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-cover"
+                             alt="Foto do Casal 1">
                     </div>
-                </div>
-                {% endfor %}
+                    <!-- Item 2 (Fallback) -->
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img src="{% static 'images/IMG_4742.JPG' %}"
+                             class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-cover"
+                             alt="Foto do Casal 2">
+                    </div>
+                {% endif %}
             </div>
             <!-- Slider controls -->
-            {% if fotos_carrossel|length > 1 %}
             <button type="button"
                     class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
                     data-carousel-prev>
@@ -1185,7 +1192,6 @@
                     <span class="sr-only">Próximo</span>
                 </span>
             </button>
-            {% endif %}
         </div>
     </div>
 
