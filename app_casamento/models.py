@@ -21,9 +21,9 @@ class Convidado(models.Model):
 
     qtd_adultos = models.PositiveIntegerField(default=1, verbose_name="Quantidade de Adultos")
     nomes_adultos = models.TextField(blank=True, null=True, verbose_name="Nomes dos Adultos")
-    qtd_criancas = models.PositiveIntegerField(default=0, verbose_name="Quantidade de Crianças")
+    qtd_criancas = models.PositiveIntegerField(blank=True, null=True, default=0, verbose_name="Quantidade de Crianças")
     nomes_criancas = models.TextField(blank=True, null=True, verbose_name="Nomes das Crianças")
-    qtd_adolescentes = models.PositiveIntegerField(default=0, verbose_name="Quantidade de Adolescentes")
+    qtd_adolescentes = models.PositiveIntegerField(blank=True, null=True, default=0, verbose_name="Quantidade de Adolescentes")
     nomes_adolescentes = models.TextField(blank=True, null=True, verbose_name="Nomes dos Adolescentes") 
 
     def __str__(self):
