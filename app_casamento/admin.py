@@ -29,7 +29,7 @@ class MensagemAdmin(admin.ModelAdmin):
 
 @admin.register(Convidado)
 class ConvidadoAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'telefone', 'email', 'qtd_adultos', 'qtd_criancas', 'criado_em')
+    list_display = ('nome', 'telefone', 'nomes_adultos', 'qtd_adultos', 'criado_em')
     list_filter = ('criado_em', 'qtd_adultos', 'qtd_criancas')
     search_fields = ('nome', 'email', 'telefone', 'nomes_adultos', 'nomes_criancas')
     readonly_fields = ('criado_em',)

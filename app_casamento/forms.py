@@ -51,7 +51,7 @@ class PartidaForm(forms.Form):
 class PresensaForm(forms.ModelForm):
     class Meta:
         model = Convidado
-        fields = ['nome', 'email', 'telefone', 'qtd_adultos', 'nomes_adultos', 'qtd_criancas', 'nomes_criancas', 'qtd_adolescentes', 'nomes_adolescentes']
+        fields = ['nome', 'telefone', 'qtd_adultos', 'nomes_adultos']
         widgets = {
             'nome': forms.TextInput(attrs={
                 'class': 'w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-300 focus:border-transparent transition duration-200',
