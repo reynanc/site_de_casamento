@@ -19,7 +19,7 @@ def criar_pagamento_presente(presente, link_retorno, compra_id):
             "failure": link_retorno,
         },
         "external_reference": str(compra_id),  # Importante para o webhook
-        "notification_url": "https://www.laynan.com.br/webhook/mercadopago/",  # Substitua pelo seu domínio
+        "notification_url": "https://seudominio.com/webhook/mercadopago/",  # Substitua pelo seu domínio
     }
     
     resposta = sdk.preference().create(preference_data)
