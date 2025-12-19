@@ -1,7 +1,7 @@
 import mercadopago
 
-public_key = "APP_USR-2aaa4713-f2f2-4592-9fea-90f5eebb8069"
-token = "APP_USR-4312193296075309-072001-ec0d15fafb531cb2599c799cb1c0d8a7-233685584"
+public_key = "SUA_PUBLIC_KEY"
+token = "SEU_TOKEN"
 
 def criar_pagamento_presente(presente, link_retorno, compra_id):
     """Função específica para pagamento de presentes de casamento"""
